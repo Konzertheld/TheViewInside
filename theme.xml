@@ -7,4 +7,5 @@
 	
 	<description>Blblblblbl. :P</description>
 	<template_engine>rawphpengine</template_engine>
+	<class>TheViewInside</class>
 </pluggable>
