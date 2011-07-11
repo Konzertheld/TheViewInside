@@ -1,12 +1,9 @@
 <?php
 /**
  * TheViewInside Habari Theme
- * @author Firman Wandayandi
- * @url http://firmanw.com/habari-theme-TheViewInside
+ * by Konzertheld
+ * http://konzertheld.de
  */
-
-// Tell Habari which class to be use as the custom theme class:
-define( 'THEME_CLASS', 'TheViewInside' );
 
 class TheViewInside extends Theme
 {
@@ -48,6 +45,8 @@ class TheViewInside extends Theme
 
 		// Apply Format::autop() to comment content
 		Format::apply( 'autop', 'comment_content_out' );
+		
+		$this->load_text_domain( 'theviewinside' );
 	}
 	
 	/**
@@ -237,7 +236,7 @@ class TheViewInside extends Theme
 	public function action_form_publish($form, $post, $context)
 	{
 		// add text fields
-		$form->insert('tags', 'text', 'viewinsidephoto', 'null:null', _t('Sidephotos, max width 220px'), 'admincontrol_textArea');
+		$form->insert('tags', 'text', 'viewinsidephoto', 'null:null', _t('Sidephotos, max width 220px', 'theviewinside'), 'admincontrol_textArea');
 		$form->insert('tags', 'text', 'viewinsidephotosource', 'null:null', _t('The photos\' source'), 'admincontrol_textArea');
 		
 		// add settings container and checkboxes
