@@ -1,4 +1,4 @@
-TheViewInside - theme for Habari 0.7
+TheViewInside - theme for Habari 0.7 and 0.8
 
 INSTALLATION
 Upload the entire folder "theviewinside" into the themes folder in your user folder. Log in as admin, go to the themes admin page and activate the new theme. Done.
@@ -7,7 +7,8 @@ SUPPORTED STUFF
 - comes with a template for events and an eventlist. Get the eventscontent plugin to use them.
 - integrates with PicasaSilo (see features)
 
-BLOCKS
+AREAS
+- The headerbar is created as an area so you can put your blocks there.
 
 FEATURES
 - Posts can have images next to the content. You have various options to use that feature. The easiest way is to write your post as always and then activate the "Extract images" box in the TheViewInside settings container, which is added to your publish page after the theme installation. There you can also remove the images (they will not really be removed from the database, only from the output) if you don't want them to be displayed twice.
