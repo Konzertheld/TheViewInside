@@ -25,7 +25,7 @@
 				<!--<div id="latestcomments">
 					<h2>Zuletzt kommentiert</h2>
 					<p>Sorry, schon wieder Wartungsarbeiten...</p>
-					<?php $theme->freshcomments(); ?>
+					<?php //$theme->freshcomments(); ?>
 				</div>-->
 				<?php $theme->area('headerbar'); ?>
 			</div>
