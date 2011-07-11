@@ -2,7 +2,7 @@
 <?php include 'header.php'; ?>
 <div id="contentcontainer">
 	<div id="content">
-		<?php include 'content.php'; ?>
+		<?php include 'thecontent.php'; ?>
 	</div>
 </div>
 <?php include 'footer.php'; ?>
