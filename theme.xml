@@ -8,4 +8,9 @@
 	<description>Blblblblbl. :P</description>
 	<template_engine>rawphpengine</template_engine>
 	<class>TheViewInside</class>
+	<areas>
+		<area name="headerbar">
+			<description><![CDATA[The header area]]></description>
+		</area>
+	</areas>
 </pluggable>
