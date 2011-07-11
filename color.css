@@ -1,0 +1,53 @@
+/* COLORS FOR THE MAIN STYLE SHEET */
+/* DO NOT PLACE LAYOUT HERE */
+
+/* GLOBAL */
+a {
+	color: #393;
+}
+blockquote {
+	border-color: #000;
+}
+
+/* CONTAINER STUFF */
+#wrapper, body {
+	background-color: #6c6;
+}
+
+#contentcontainer, #headerbarcontainer, #headerbar, #footercontainer, #footer {
+	color: #000;
+	background-color: #fcfcfc;
+}
+
+
+/* HEADER */
+#homelogo {
+	color: #455;
+}
+
+/* POSTS */
+.post.even {
+	background-color: #f4f4f4;
+}
+
+.postside {
+	background-color: #fcfcfc;
+}
+.even .postside {
+	background-color: #f4f4f4;
+}
+
+/* COMMENTS */
+
+/* OTHER ELEMENTS IN MULTIPLE VIEW */
+#page-selector {
+	background-color: #ebebeb;
+}
+#page-selector .current-page {	
+	color: #000;
+}
+
+/* FOOTER */
+#footer h2, #comments h3 {
+	border-top-color: #6c6;
+}

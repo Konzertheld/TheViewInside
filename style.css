@@ -1,0 +1,391 @@
+/* MAIN STYLE SHEET */
+/* PUT LAYOUT HERE AND COLORS IN color.css */
+
+/*	NOTES
+
+	CSS 3
+	* border-radius used for the page selector
+	* word-wrap used on some block elements (global stuff)
+	* homelogo rotation
+	*/
+	
+/* FONT DECLARATIONS */
+
+/* Global font by http://www.josbuivenga.demon.nl/delicious.html */
+@font-face { font-family: Delicious; src: url('fonts/Delicious-Roman.otf'); }
+@font-face { font-family: Delicious; font-weight: bold; src: url('fonts/Delicious-Bold.otf'); }
+/* Headings font by http://www.fontspace.com/kiwi-media */
+@font-face { font-family: KiwiAmbient; src: url('fonts/AMBIENT.TTF'); }
+
+/* GLOBAL STUFF */
+body, div, p, ul, ol, h1, h2, h3, h4, h5, input, label {
+	margin: 0;
+	padding: 0;
+}
+div, p {
+	word-wrap: break-word;
+}
+p, ul, ol {
+	margin-bottom: 10px;
+}
+h5 {
+	font-weight: normal;
+}
+
+ul, ol {
+	padding-left: 20px;
+}
+ul {
+	list-style-type: square;
+}
+li {
+	margin-top: 3px;
+}
+
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+h1, h2, h1 a, h2 a, h3, h3 a {
+	font-family: Georgia, Helvetica, Verdana, Arial, sans-serif;
+}
+blockquote {
+	border-left: 1px solid;
+	padding-left: 15px;
+}
+
+/* CONTAINER STUFF */
+
+body {
+	font-family: Helvetica, Verdana, Arial, sans-serif;
+	font-size: 13px;
+}
+#wrapper {
+	margin: auto;
+}
+
+#contentcontainer, #headerbarcontainer, #footer {
+	width: 100%;
+	margin: auto;
+	clear: both;
+}
+#contentcontainer, #headerbarcontainer {
+	min-width: 800px;
+	max-width: 950px;
+}
+#headerbarcontainer {
+	position: relative;
+}
+
+/* HEADER */
+#headerbar {
+	padding: 150px 20px 10px 40px;
+	float: left;
+	background: url('images/header9.png') top center no-repeat;
+}
+#headerbar h1 {
+	display:none;
+}
+#headerbar h2 {
+	font-size: 20px;
+	font-weight: normal;
+}
+#latestcomments-container, #inhaltentdecken-container {
+	width:30%;
+	float: left;
+}
+#toptagcloud-container {
+	width:40%;
+	float: left;
+}
+#latestcomments, #inhaltentdecken, #toptagcloud {
+	margin: 0 20px auto auto;
+}
+
+#socialcontainer {
+	position: absolute;
+	top: 15px;
+	right: -24px;
+}
+
+/* Social Net icons */
+.socialneticon {
+	display: block;
+	width: 48px;
+	height: 48px;
+	z-index:9999999;
+}
+/* #homelogo {
+	background:transparent url('images/konzertheld-vertikal.png') no-repeat;
+	width: 278px;
+	height: 39px;
+	display: block;
+	position: absolute;
+	top: 280px;
+	left: -41px;
+} */
+#homelogo {
+	-webkit-transform: rotate(270deg);
+	-moz-transform: rotate(270deg);
+	-ms-transform: rotate(270deg);
+	-o-transform: rotate(270deg);
+	transform: rotate(270deg);
+	width: 278px;
+	height: 39px;
+	display: block;
+	position: absolute;
+	top:136px;
+	left: -161px;
+	font-size:48px;
+	font-family: KiwiAmbient;
+}
+#homelogo:hover {
+	text-decoration:none;
+}
+#net-lastfm {
+	background:transparent url('images/icons/lastfm.png') no-repeat;
+}
+#net-lastfm:hover {
+	background:transparent url('images/icons/lastfmi.png') no-repeat;
+}
+#net-lastfm:active {
+	background:transparent url('images/icons/lastfmiu.png') no-repeat;
+}
+#net-picasa {
+	background:transparent url('images/icons/picasa.png') no-repeat;
+}
+#net-picasa:hover {
+	background:transparent url('images/icons/picasai.png') no-repeat;
+}
+#net-youtube {
+	background:transparent url('images/icons/youtube.png') no-repeat;
+}
+#net-youtube:hover {
+	background:transparent url('images/icons/youtubei.png') no-repeat;
+}
+#net-flickr {
+	background:transparent url('images/icons/flickr.png') no-repeat;
+}
+#net-flickr:hover {
+	background:transparent url('images/icons/flickri.png') no-repeat;
+}
+#net-rss {
+	background:transparent url('images/icons/rss.png') no-repeat;
+}
+#net-rss:hover {
+	background:transparent url('images/icons/rssi.png') no-repeat;
+}
+#net-bookcrossing {
+	background:transparent url('images/icons/bookcrossing.png') no-repeat;
+}
+#net-bookcrossing:hover {
+	background:transparent url('images/icons/bookcrossingi.png') no-repeat;
+}
+#net-deviantart {
+	background:transparent url('images/icons/deviantart.png') no-repeat;
+}
+#net-deviantart:hover {
+	background:transparent url('images/icons/deviantarti.png') no-repeat;
+}
+
+/* POSTS AND SIDEPHOTOS */
+.post {
+	clear:both;
+	padding:15px 40px 15px 40px;
+	position:relative;
+	min-height:300px;
+}
+
+.postmeta-title {
+	font-weight:normal;
+	font-size:36px;
+}
+.postmeta-meta {
+	font-weight:bold;
+	font-size:110%;
+}
+
+.postcontent-container {
+	position:relative;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+.postcontent {
+	text-align:justify;
+}
+
+.withsidecontent {
+	margin-right:150px;
+}
+
+.postside {
+	position:absolute;
+	padding: 15px 15px 10px 7px;
+	overflow:hidden;
+	min-height:200px;
+	width:220px;
+	top:-15px;
+	right:-104px;
+	text-align:right;
+	max-height:100%;
+}
+
+.post img  {
+	max-height:400px;
+	max-width:400px;
+}
+
+.postside-photos img {
+	max-width:206px;
+}
+
+/* TAGS */
+.tag-cloud, .postmeta-tags ul {
+	list-style-type:none;
+	text-transform:lowercase;
+	padding:0;
+	margin:0;
+}
+.tag-cloud li, .postmeta-tags li {
+	display:inline;
+}
+
+/* COMMENTS */
+#comments-headline {
+	margin-bottom: 20px; /* disappears when there are comments because of collapsing margins */
+}
+#comments h3 {
+	font-size: 20px;
+	font-weight: normal;
+}
+.comment {
+	margin-top: 20px;
+	padding: 10px;
+}
+.comment:after {
+	clear:both;
+}
+.gravatar {
+	max-height: 80px;
+	max-width: 80px;
+	float:left;
+}
+.gravatar + .comment-main {
+	margin-left: 100px;
+}
+.comment-main {	
+	min-height: 90px;
+}
+.comment-content {
+	margin-top: 6px;
+}
+
+/* COMMENT FORM */
+#comment-form {
+	margin-top: 10px;
+}
+
+.formcontrol input[type=text], #cf_content {
+	width:500px;
+	
+}
+.formcontrol, #cf_content {
+	clear:both;
+}
+.formcontrol label, #cf_content label {
+	display: block;
+	margin: 8px 0 2px 1px;
+}
+
+/* POST LISTS (PREVIOUSLY, RANDOM, FRESHCOMMENTS) */
+ul.postlist {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+ul.postlist li {
+	margin:0 0 5px 0;
+	padding:0;
+}
+.postlist-meta h3 {
+	font-weight:normal;
+	font-size:13px;
+}
+.postlist-meta p {
+	font-size:11px;
+	margin:0;
+}
+
+/* OTHER ELEMENTS IN MULTIPLE VIEW */
+#page-selector {
+	margin: 10px 170px 0 30px;
+	padding: 5px 10px;
+	border-radius: 10px;
+}
+
+/* FOOTER */
+#footer {
+	padding: 15px 30px 20px 30px;
+	text-align: center;
+	max-width: 890px;
+}
+#footer h2, #comments h3 {
+	padding-top: 10px;
+	border-top-width: 1px;
+	border-top-style: solid;
+}
+
+/* MIXED STUFF */
+.rating img, img.rating
+{
+	background:none;
+	border:none;
+	height:14px;
+	padding:0;
+	display:inline;
+}
+span.rating {
+	display:inline;
+}
+
+/* OLD EVENT STUFF */
+.eventlist ul li {
+	padding-top:3px;
+	padding-bottom:3px;
+	height:22px;
+	background-position:5px left;
+}
+.eventlist ul li h4 {
+	margin:0;
+	font-weight:normal;
+}
+.eventlist ul li h4 {
+	margin-bottom:3px;
+	font-size:13px;
+	display:inline;
+}
+.eventlist ul li ul li {
+	background-image:none;
+	margin-left:8px;
+	margin-bottom:14px;
+	padding:0;
+	display:normal;
+}
+.eventlist ul li ul {
+	display:none;
+	position:relative;
+	top:-22px;
+	left:0;
+	margin:-4px 0 0 300px;
+	padding:3px;
+}
+.eventlist ul li:hover, .eventlist ul li:hover ul {
+	/* background-color:#393939; */
+}
+.eventlist ul li:hover ul {
+	display:block;
+}
