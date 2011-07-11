@@ -1,7 +1,5 @@
 <?php if ( ! defined('HABARI_PATH' ) ) { die( _t('Please do not load this page directly.') ); } ?>
-<?php if(!isset($content) || empty($content)) $content = $post; ?>
 <?php
-
 $i = 0;
 foreach($content->tvi_photos as $photo)
 {
