@@ -13,7 +13,7 @@
 ?>
 
 <p class="pagination"><?php if(is_object($post->descend($dparams))):?><a href="<?php echo $post->descend($dparams)->permalink; ?>">&lt; Vorheriger Post</a> | <?php endif; ?>
-<?php if ($user instanceof User && $loggedin): ?><a href="<?php Site::out_url('admin');?>/publish?id=<?php echo $post->id; ?>" title="<?php printf(_t('Edit %s'), $post->title); ?>"><?php _e('Edit %s', $theme->name); ?></a><?php endif;?><? if ($user instanceof User && $loggedin)echo ' | ';?>
+<?php if ($user instanceof User && $loggedin): ?><a href="<?php Site::out_url('admin');?>/publish?id=<?php echo $post->id; ?>" title="<?php printf(_t('Edit %s'), $post->title); ?>"><?php _e('Edit post', $theme->name); ?></a><?php endif;?><? if ($user instanceof User && $loggedin)echo ' | ';?>
 <?php if(is_object($post->ascend($aparams))):?> <a href="<?php echo $post->ascend($aparams)->permalink; ?>">N&auml;chster Post &gt;</a><?php endif; ?></p>
 
 <!--
