@@ -1,1 +1,1 @@
-<?php echo sprintf(_t("An article from %s"), $this->post->pubdate->format()); ?>
+<?php echo sprintf(_t("An article from %s", $theme->name), $this->post->pubdate->format()); ?>

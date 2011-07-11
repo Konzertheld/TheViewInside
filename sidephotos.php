@@ -1,5 +1,5 @@
 <?php if ( ! defined('HABARI_PATH' ) ) { die( _t('Please do not load this page directly.') ); } ?>
-<?php if(!isset($content)) $content = $post; ?>
+<?php if(!isset($content) || empty($content)) $content = $post; ?>
 <?php
 
 $i = 0;
@@ -23,7 +23,7 @@ foreach($content->tvi_photos as $photo)
 }
 if(count($content->tvi_photosources))
 {
-	_e("Sources: ");
+	_e("Sources: ", $theme->name);
 	foreach($content->tvi_photosources as $i => $source)
 		echo "<a href='$source'>[". ($i+1) ."]</a> ";
 }
@@ -31,7 +31,7 @@ if(count($content->tvi_photosources))
 $picasaalbum = $content->tvi_picasaalbum;
 if(!empty($picasaalbum))
 { ?><p class="sidecontent-footer"><?php
-	_e("View entire album: ");
+	_e("View entire album: ", $theme->name);
 	echo "<a href='$content->tvi_picasaalbum_out'>$content->tvi_picasaalbum</a>";
 	?></p><?php
 }

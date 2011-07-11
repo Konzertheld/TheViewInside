@@ -8,5 +8,5 @@ foreach ( $posts as $post )
 }
 ?>
 <div id="page-selector">
-	<?php $theme->prev_page_link( _t('&laquo; Newer') ); ?> <?php $theme->page_selector( null, array( 'leftSide' => 4, 'rightSide' => 4 ) ); ?> <?php $theme->next_page_link( _t( 'Older &raquo;' ) ); ?>
+	<?php $theme->prev_page_link( _t('&laquo; Newer', $theme->name) ); ?> <?php $theme->page_selector( null, array( 'leftSide' => 4, 'rightSide' => 4 ) ); ?> <?php $theme->next_page_link( _t( 'Older &raquo;', $theme->name ) ); ?>
 </div>

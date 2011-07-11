@@ -7,7 +7,7 @@
 				<h2 class="postmeta-title"><a href="<?php echo $post->permalink; ?>" title="<?php echo $post->title_out; ?>"><?php echo $post->title_out; ?></a></h2>
 				<div class="postmeta-meta">
 					<?php $theme->metaline($post); ?>
-					<?php if($post->isguestpost) printf( _t('Guest article by %s'), $post->author->displayname); ?>
+					<?php if($post->isguestpost) printf( _t('Guest article by %s', $theme->name), $post->author->displayname); ?>
 				</div>
 				<?php if (count($post->tags)) : ?>
 				<div class="postmeta-tags">
@@ -19,7 +19,7 @@
 				<div class="postcontent<?php if(count($post->tvi_photos)) echo " withsidecontent"; ?>">
 					<?php echo $post->content_out;?>
 					<?php if (User::identify()->id): ?>
-					<p class="editpostlink"><a href="<?php Site::out_url('admin');?>/publish?id=<?php echo $post->id; ?>" title="<?php printf(_t("Edit %s"), $post->title); ?>"><?php _e('Edit post'); ?></a></p>
+					<p class="editpostlink"><a href="<?php Site::out_url('admin');?>/publish?id=<?php echo $post->id; ?>" title="<?php printf(_t('Edit %s', $theme->name), $post->title); ?>"><?php printf(_t('Edit %s', $theme->name), $post->title); ?></a></p>
 					<?php endif; ?>
 				</div>
 				<?php if(count($post->tvi_photos)): ?>

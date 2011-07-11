@@ -5,25 +5,25 @@
 		{
 			printf( _n('%1$d comment so far', '%1$d comments so far', $post->comments->moderated->count), $post->comments->moderated->count );?>. <?php
 		}
-		else _e('No comments yet. Start the discussion!'); ?>
+		else _e('No comments yet. Start the discussion!', $theme->name); ?>
 	</h3>
 	<?php if ( $post->comments->moderated->count ): ?>
 		<?php $evenoddcomment = true;
 		foreach ( $post->comments->moderated as $comment ): ?>
 			<div id="comment-<?php echo $comment->id; ?>" class="comment<?php if($evenoddcomment) echo ' even'; else echo ' odd';?>">
 				<?php if (Plugins::is_loaded('Gravatar')): ?>
-				<div class="gravatar"><img src="<?php echo $comment->gravatar ?>" alt="<?php printf(_t("%s's Gravatar"), $comment->name); ?>"></div>
+				<div class="gravatar"><img src="<?php echo $comment->gravatar ?>" alt="<?php printf(_t("%s's Gravatar", $theme->name), $comment->name); ?>"></div>
 				<?php endif; ?>
 				<div class="comment-main">
 					<div class="comment-meta">
-						<?php printf(_t(' %s said at %s:'),
+						<?php printf(_t(' %s said at %s:', $theme->name),
 						'<span class="comment-author">'.$theme->theme_comment_author_link($theme, $comment).'</span>',
 						'<span><a href="'.$post->permalink.'#comment-'.$comment->id.'">'.$comment->date->format().'</a></span>'); ?>
 					</div>
 					<div class="comment-content">
 						<?php echo $comment->content_out; ?>
 						<?php if ( $comment->status == Comment::STATUS_UNAPPROVED ) : ?>
-						<p class="newunapproved"><em><?php _e( 'Your comment is awaiting moderation' ) ;?></em></p>
+						<p class="newunapproved"><em><?php _e( 'Your comment is awaiting moderation', $theme->name ) ;?></em></p>
 						<?php endif; ?>
 					</div>
 				</div>
@@ -32,7 +32,7 @@
 		endforeach; ?>
 	<?php endif; ?>
 	<?php if ( !$post->info->comments_disabled ) : ?>
-		<?php if(count($post->comments->moderated)): ?><h3><?php _e('Say something!'); ?></h3><?php endif; ?>
+		<?php if(count($post->comments->moderated)): ?><h3><?php _e('Say something!', $theme->name); ?></h3><?php endif; ?>
 		<div id="comment-form">
 			<?php 	if ( Session::has_messages() ) Session::messages_out(); ?>
 			<?php 	$post->comment_form()->out(); ?>
@@ -41,7 +41,7 @@
 		</div>
 	<?php else: ?> 
 		<div id="comments-closed">
-				<p><?php _e( "Comments are closed for this post" ); ?></p>
+				<p><?php _e( "Comments are closed for this post", $theme->name ); ?></p>
 		</div>
 	<?php endif; ?>
 

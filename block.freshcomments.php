@@ -1,6 +1,6 @@
 <?php if ( ! defined('HABARI_PATH' ) ) { die( _t('Please do not load this page directly.') ); } ?>
 <div id="latestcomments-container">
-	<h2><?php _e("Discussed articles"); ?></h2>
+	<h2><?php _e("Discussed articles", $theme->name); ?></h2>
 	<ul class="postlist">
 		<?php foreach ($content->freshcomments as $post): ?>
 		<li class="postlist-meta">
