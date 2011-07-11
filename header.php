@@ -20,14 +20,14 @@
 <div id="wrapper">
 	<div id="headerbarcontainer">
 		<div id="headerbar">
-			
 			<h1><?php Options::out( 'title' ); echo ' | '; echo "WARTUNGSARBEITEN";/*Options::out( 'tagline' );*/ ?></h1>
 			<div id="latestcomments-container">
-				<div id="latestcomments">
+				<!--<div id="latestcomments">
 					<h2>Zuletzt kommentiert</h2>
 					<p>Sorry, schon wieder Wartungsarbeiten...</p>
 					<?php $theme->freshcomments(); ?>
-				</div>
+				</div>-->
+				<?php $theme->area('headerbar'); ?>
 			</div>
 			<div id="inhaltentdecken-container">
 				<div id="inhaltentdecken">
