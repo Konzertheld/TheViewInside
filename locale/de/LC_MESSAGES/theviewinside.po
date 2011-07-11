@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: The View Inside\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-11 14:54+0100\n"
-"PO-Revision-Date: 2011-07-11 14:58+0100\n"
+"POT-Creation-Date: 2011-07-11 15:48+0100\n"
+"PO-Revision-Date: 2011-07-11 15:52+0100\n"
 "Last-Translator: Konzertheld <konzertheld@konzertheld.de>\n"
 "Language-Team: Konzertheld <konzertheld@konzertheld.de>\n"
 "MIME-Version: 1.0\n"
@@ -86,7 +86,7 @@ msgstr "Ein Artikel vom %s"
 msgid "A report about "
 msgstr "Ein Bericht über "
 
-#: metaline.event.php:7
+#: metaline.event.php:8
 #: metaline.php:13
 msgid "an event"
 msgstr "ein Event"
@@ -109,10 +109,6 @@ msgstr "Gastartikel von %s"
 msgid "Edit %s"
 msgstr "Bearbeite %s"
 
-#: post.php:19
-msgid "Edit post"
-msgstr "Post bearbeiten"
-
 #: sidephotos.php:26
 msgid "Sources: "
 msgstr "Quellen: "
@@ -120,10 +116,6 @@ msgstr "Quellen: "
 #: sidephotos.php:34
 msgid "View entire album: "
 msgstr "Ganzes Album anzeigen: "
-
-#: singlenavi.php:16
-msgid "Post bearbeiten"
-msgstr ""
 
 #: thecontent.php:11
 msgid "&laquo; Newer"
@@ -133,69 +125,71 @@ msgstr "&laquo; Neuer"
 msgid "Older &raquo;"
 msgstr "Älter &raquo;"
 
-#: theme.php:68
+#: theme.php:67
 msgid "Content Types in pagination:"
 msgstr "Inhaltstypen in der Navigation:"
 
-#: theme.php:76
+#: theme.php:75
 msgid "Save"
 msgstr "Speichern"
 
-#: theme.php:77
+#: theme.php:76
 msgid "Options saved"
 msgstr "Einstellungen gespeichert"
 
-#: theme.php:143
+#: theme.php:142
 #, php-format
 msgid "Continue reading %s"
 msgstr "%s weiterlesen"
 
-#: theme.php:164
+#: theme.php:163
 msgid "Search for "
 msgstr ""
 
-#: theme.php:169
-#: theme.php:178
+#: theme.php:168
+#: theme.php:177
 #, php-format
 msgid "Deine Suche nach \"<b>%s</b>\"."
 msgstr ""
 
-#: theme.php:172
+#: theme.php:171
 #, php-format
 msgid "Keine Ergebnisse fr deine Suche '%1$s'"
 msgstr ""
 
-#: theme.php:172
+#: theme.php:171
 #, php-format
 msgid "You can try searching for '%2$s'"
 msgstr ""
 
-#: theme.php:175
+#: theme.php:174
 #, php-format
 msgid "Suchergebnisse f&uuml;r \"<b>%s</b>\"."
 msgstr ""
 
-#: theme.php:240
+#: theme.php:239
 msgid "Sidephotos, max width 220px"
 msgstr "Seitenfotos, maximale Breite 220px"
 
-#: theme.php:241
+#: theme.php:240
 msgid "The photos' source"
 msgstr "Die Quelle des Fotos"
 
-#: theme.php:244
+#: theme.php:243
 msgid "TheViewInside"
 msgstr ""
 
-#: theme.php:245
+#: theme.php:244
 msgid "Extract images from sourcecode"
 msgstr "Bilder aus Quellcode extrahieren"
 
-#: theme.php:246
+#: theme.php:245
 msgid "Remove images from sourcecode"
 msgstr "Bilder aus Quellcode entfernen"
 
-#: theme.php:247
+#: theme.php:246
 msgid "Max number of images in sidebar"
 msgstr "Maximale Anzahl Bilder in der Seitenleiste"
 
+#~ msgid "Edit post"
+#~ msgstr "Post bearbeiten"
