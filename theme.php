@@ -307,51 +307,51 @@ class TheViewInside extends Theme
 		return $photos;
 	}
 	
-	function filter_post_tvi_photos($out, $post)
+	function filter_post_tvi_photos($out, $thispost)
 	{
 		// Discard values from other plugins (usually, the $out parameter should be empty)
 		$out = array();
 		
 		// 0. Images from content?
-		if($post->info->extract_images)
+		if($thispost->info->extract_images)
 		{
-			$postimages = $this->post_get_images($post->content);
-			if(count($postimages))
+			$thispostimages = $this->post_get_images($thispost->content);
+			if(count($thispostimages))
 			{
-				$out = array_merge($out, $postimages);
+				$out = array_merge($out, $thispostimages);
 			}
 		}
 		
 		// 1. No image?
-		if(empty($post->info->viewinsidephoto))
+		if(empty($thispost->info->viewinsidephoto))
 		{
 			// Try to get one via slug from the banner folder
 			$slugphotos = array();
 			// TODO: multiple numbered Slugphotos
 			foreach($this->image_extensions as $ext)
 			{
-				$subpath = "/files/banner/" . $post->slug . $ext;
+				$subpath = "/files/banner/" . $thispost->slug . $ext;
 				if(is_file(Site::get_dir('user').$subpath))
 					$slugphotos[] = Site::get_url('user').$subpath;
 			}
 			$out = array_merge($out, $slugphotos);
 		}
 		// 2. External image?
-		else if(substr($post->info->viewinsidephoto,0,4)=="http")
+		else if(substr($thispost->info->viewinsidephoto,0,4)=="http")
 		{
 			// TODO: Multiple images!
-			$out[] = $post->info->viewinsidephoto;
+			$out[] = $thispost->info->viewinsidephoto;
 		}
 		// 3. Picasa album?
-		else if(substr($post->info->viewinsidephoto,0,7)=="picasa:")
+		else if(substr($thispost->info->viewinsidephoto,0,7)=="picasa:")
 		{
-			$out = array_merge($out, $this->get_picasa_images(substr($post->info->viewinsidephoto,7), $post->user_id));
+			$out = array_merge($out, $this->get_picasa_images(substr($thispost->info->viewinsidephoto,7), $thispost->user_id));
 		}
 		// 4. Internal image in user directory?
-		else if(is_file(Site::get_dir('user').$post->info->viewinsidephoto))
+		else if(is_file(Site::get_dir('user').$thispost->info->viewinsidephoto))
 		{
 			// TODO: Multiple images!
-			$out[] = Site::get_url('user').$post->info->viewinsidephoto;
+			$out[] = Site::get_url('user').$thispost->info->viewinsidephoto;
 		}
 		
 		// Apply limit and random order
@@ -359,10 +359,10 @@ class TheViewInside extends Theme
 		//$fu = count($out);
 		//Utils::debug($out);
 		$randomizedphotos = array();
-		if(!isset($post->info->max_images) || $post->info->max_images == null || $post->info->max_images == 0)
+		if(!isset($thispost->info->max_images) || $thispost->info->max_images == null || $thispost->info->max_images == 0)
 			$randomkeys = array_rand($out, count($out));
 		else
-			$randomkeys = array_rand($out, $post->info->max_images);
+			$randomkeys = array_rand($out, $thispost->info->max_images);
 		foreach((array)$randomkeys as $randomkey) $randomizedphotos[] = $out[$randomkey];
 		
 		return $randomizedphotos;
@@ -407,6 +407,7 @@ class TheViewInside extends Theme
 	
 	function filter_post_tvi_photos_out($out, $post)
 	{
+		$this->assign('content', $post);
 		return $this->fetch("sidephotos");
 	}
 	
