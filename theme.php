@@ -64,7 +64,7 @@ class TheViewInside extends Theme
 			// pointless, because singular/plural cannot be get here
 			// $types[$id] = Post::type_name($id);
 		// }
-		$ui->append( 'select', 'content_types', __CLASS__.'__content_types', _t( 'Content Types in pagination:', $theme->name ) );
+		$ui->append( 'select', 'content_types', __CLASS__.'__content_types', _t( 'Content Types in pagination:', $this->name ) );
 		$ui->content_types->size = count($types);
 		$ui->content_types->multiple = true;		
 		$ui->content_types->options = $types;
@@ -72,8 +72,8 @@ class TheViewInside extends Theme
 		$ui->blatest->maxlength = 3;
 
 		// Save
-		$ui->append( 'submit', 'save', _t( 'Save', $theme->name ) );
-		$ui->set_option( 'success_message', _t( 'Options saved', $theme->name ) );
+		$ui->append( 'submit', 'save', _t( 'Save', $this->name ) );
+		$ui->set_option( 'success_message', _t( 'Options saved', $this->name ) );
 		$ui->out();
 	}
 
@@ -139,7 +139,7 @@ class TheViewInside extends Theme
 			$morepos = stripos($content, "<!--more-->");
 			if(!$morepos) $morepos = stripos($content, "<!-- more -->");
 			if($morepos != false)
-				$newcontent = substr($content, 0, $morepos)."<p><a class='readmorelink' href='".$post->permalink."' title='".sprintf(_t("Continue reading %s", $theme->name),$post->title)."'>".sprintf(_t("Continue reading %s", $theme->name),$post->title)."</a></p>";
+				$newcontent = substr($content, 0, $morepos)."<p><a class='readmorelink' href='".$post->permalink."' title='".sprintf(_t("Continue reading %s", $this->name),$post->title)."'>".sprintf(_t("Continue reading %s", $this->name),$post->title)."</a></p>";
 		}
 		
 		// Remove images
@@ -151,31 +151,6 @@ class TheViewInside extends Theme
 				$newcontent = str_replace($image["original"], "", $newcontent);
 		}
 		return $newcontent;
-	}
-
-	// TODO Hier müsste man auch mal was gescheites machen
-	// Was tut diese Funktion eigentlich?
-	public function theme_search_prompt( $theme, $criteria, $has_results )
-	{
-		$out=array();
-		$keywords=explode(' ',trim($criteria));
-		foreach ($keywords as $keyword) {
-			$out[]= '<a href="' . Site::get_url( 'habari', true ) .'search?criteria=' . $keyword . '" title="' . _t( 'Search for ', $theme->name ) . $keyword . '">' . $keyword . '</a>';
-		}
-
-		if ( sizeof( $keywords ) > 1 ) {
-			if ( $has_results ) {
-				return sprintf( _t( 'Deine Suche nach "<b>%s</b>".', $theme->name ), implode(' ',$out) );
-				exit;
-			}
-			return sprintf( _t('Keine Ergebnisse für deine Suche \'%1$s\'', $theme->name) . '<br />'. _t('You can try searching for \'%2$s\'', $theme->name), $criteria, implode('\' or \'',$out) );
-		}
-		else {
-			return sprintf( _t( 'Suchergebnisse f&uuml;r "<b>%s</b>".', $theme->name ), $criteria );
-			exit;
-		}
-		return sprintf( _t( 'Deine Suche nach "<b>%s</b>".', $theme->name ), $criteria );
-
 	}
 	
 	// Get images
@@ -236,14 +211,14 @@ class TheViewInside extends Theme
 	public function action_form_publish($form, $post, $context)
 	{
 		// add text fields
-		$form->insert('tags', 'text', 'viewinsidephoto', 'null:null', _t('Sidephotos, max width 220px', $theme->name), 'admincontrol_textArea');
-		$form->insert('tags', 'text', 'viewinsidephotosource', 'null:null', _t('The photos\' source', $theme->name), 'admincontrol_textArea');
+		$form->insert('tags', 'text', 'viewinsidephoto', 'null:null', _t('Sidephotos, max width 220px', $this->name), 'admincontrol_textArea');
+		$form->insert('tags', 'text', 'viewinsidephotosource', 'null:null', _t('The photos\' source', $this->name), 'admincontrol_textArea');
 		
 		// add settings container and checkboxes
-		$viewinsidefields = $form->publish_controls->append('fieldset', 'viewinsidefields', _t('TheViewInside', $theme->name));
-		$viewinsidefields->append('checkbox', 'extract_images', 'extract_images', _t('Extract images from sourcecode', $theme->name));
-		$viewinsidefields->append('checkbox', 'remove_images', 'remove_images', _t('Remove images from sourcecode', $theme->name));
-		$viewinsidefields->append('text', 'max_images', 'max_images', _t('Max number of images in sidebar', $theme->name));
+		$viewinsidefields = $form->publish_controls->append('fieldset', 'viewinsidefields', _t('TheViewInside', $this->name));
+		$viewinsidefields->append('checkbox', 'extract_images', 'extract_images', _t('Extract images from sourcecode', $this->name));
+		$viewinsidefields->append('checkbox', 'remove_images', 'remove_images', _t('Remove images from sourcecode', $this->name));
+		$viewinsidefields->append('text', 'max_images', 'max_images', _t('Max number of images in sidebar', $this->name));
 		
 		// load values and display the fields
 		$form->viewinsidephoto->value = $post->info->viewinsidephoto;
@@ -302,7 +277,7 @@ class TheViewInside extends Theme
 				$photos[] = $props;
 			} 
 		}
-		catch(exception $e) { $photos = _t(vsprintf("No photos available or an error occured. Sometimes reloading the page helps. %s", $e), $theme->name); }
+		catch(exception $e) { $photos = _t(vsprintf("No photos available or an error occured. Sometimes reloading the page helps. %s", $e), $this->name); }
 
 		return $photos;
 	}
@@ -393,7 +368,7 @@ class TheViewInside extends Theme
 				
 				$out = $albumlinks[$post->tvi_picasaalbum];
 			}
-			catch(exception $e) { $out = _t(vsprintf("No Picasa album available or an error occured. Sometimes reloading the page helps. %s", $e), $theme->name); }
+			catch(exception $e) { $out = _t(vsprintf("No Picasa album available or an error occured. Sometimes reloading the page helps. %s", $e), $this->name); }
 		}
 		return $out;
 	}
