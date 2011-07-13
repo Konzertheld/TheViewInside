@@ -172,20 +172,22 @@ class TheViewInside extends Theme
 			$srcoffset = stripos($match, "src=\"");
 			$imagearray["source"] = substr($match, $srcoffset+5, stripos($match, "\"", $srcoffset+5) - $srcoffset - 5);
 			
-			// Get the class(es), if any (extract the class part)
-			// TODO: error handling when there are no classes
+			// Get the class(es), if any (extract the class attribute)
 			$classoffset = stripos($match, "class=\"");
-			$imagearray["classstring"] = substr($match, $classoffset+7, stripos($match, "\"", $classoffset+7) - $classoffset-7);
-						
-			// Stop now if classes cause exclusion of this image, otherwise add the classes to the array
-			$classesarray = explode(' ', $imagearray["classstring"]);
-			
-			foreach($this->excludedclasses as $excluded)
+			if($classoffset != false)
 			{
-				if(in_array($excluded, $classesarray)) $imagearray = null;
+				$imagearray["classstring"] = substr($match, $classoffset+7, stripos($match, "\"", $classoffset+7) - $classoffset-7);
+							
+				// Stop now if classes cause exclusion of this image, otherwise add the classes to the array
+				$classesarray = explode(' ', $imagearray["classstring"]);
+				
+				foreach($this->excludedclasses as $excluded)
+				{
+					if(in_array($excluded, $classesarray)) $imagearray = null;
+				}
+				if($imagearray == null) continue;
+				else $imagearray["classes"] = $classesarray;
 			}
-			if($imagearray == null) continue;
-			else $imagearray["classes"] = $classesarray;
 			
 			// Finally, add the html without classes to remove (TODO - currently all classes are removed)
 			$imagearray["out"] = str_replace("class=\"$classes\"", "", $match);
