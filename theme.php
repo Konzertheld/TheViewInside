@@ -188,7 +188,7 @@ class TheViewInside extends Theme
 				else $imagearray["classes"] = $classesarray;
 			}
 			
-			// Finally, add the html without classes to remove (TODO - currently all classes are removed)
+			// Finally, add the html without classes. If some classes are needed, they can be added again later.
 			$imagearray["out"] = str_replace("class=\"$classes\"", "", $match);
 			
 			$imagelist[] = $imagearray;
@@ -332,15 +332,8 @@ class TheViewInside extends Theme
 		
 		// Apply limit and random order
 		// TODO: Decide when to randomize here
-		//$fu = count($out);
-		//Utils::debug($out);
-		$randomizedphotos = array();
-		if(!isset($thispost->info->max_images) || $thispost->info->max_images == null || $thispost->info->max_images == 0)
-			$randomkeys = array_rand($out, count($out));
-		else
-			$randomkeys = array_rand($out, $thispost->info->max_images);
-		foreach((array)$randomkeys as $randomkey) $randomizedphotos[] = $out[$randomkey];
-		
+		shuffle($out);
+		$randomizedphotos = array_slice($out, 0, $thispost->info->max_images);
 		return $randomizedphotos;
 	}
 	
