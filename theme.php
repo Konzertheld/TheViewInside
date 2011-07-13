@@ -68,7 +68,6 @@ class TheViewInside extends Theme
 		$ui->content_types->size = count($types);
 		$ui->content_types->multiple = true;		
 		$ui->content_types->options = $types;
-		$ui->append ( 'text', 'blatest', __CLASS__.'blatest', 'useless');
 		$ui->blatest->maxlength = 3;
 
 		// Save
