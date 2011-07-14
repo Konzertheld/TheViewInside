@@ -245,7 +245,7 @@ class TheViewInside extends Theme
 		$post->info->max_images = $form->max_images->value;
 	}
 	
-	public function get_picasa_images($albumname, $userid = null, $size = "s220")
+	public function get_picasa_images($albumname, $userid = null, $size = "s200")
 	{
 		try
 		{
