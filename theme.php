@@ -249,21 +249,35 @@ class TheViewInside extends Theme
 	{
 		try
 		{
+			//Check if the photos are already cached first because then we're already finished
+			if(Cache::has(array($this->name, "album_$albumname")))
+				return Cache::get(array($this->name, "album_$albumname"));
+			
 			$picasa = new Picasa();
 			$picasa->userid = $userid;
 			
 			// Get these crappy album IDs and the links
-			$xml = $picasa->get_albums();
-			
-			foreach($xml->channel->item as $album)
+			if(Cache::has(array($this->name, "picasa_albumids")) && Cache::has(array($this->name, "picasa_albumlinks")))
 			{
-				$albumids[(string)$album->title] = (string)$album->children('http://schemas.google.com/photos/2007')->id;
-				$albumlinks[(string)$album->title] = (string)$album->link;
+				$albumids = Cache::get(array($this->name, "picasa_albumids"));
+				$albumlinks = Cache::get(array($this->name, "picasa_albumlinks"));
 			}
-					
-			$xml = $picasa->get_photos(array("album" => $albumids[$albumname]));
+			else
+			{
+				$xml = $picasa->get_albums();
+				
+				foreach($xml->channel->item as $album)
+				{
+					$albumids[(string)$album->title] = (string)$album->children('http://schemas.google.com/photos/2007')->id;
+					$albumlinks[(string)$album->title] = (string)$album->link;
+					Cache::set(array($this->name, "picasa_albumids"), $albumids, 3600);
+					Cache::set(array($this->name, "picasa_albumlinks"), $albumlinks, 3600);
+				}
+			}
 			
 			// Get the actual photos
+			$xml = $picasa->get_photos(array("album" => $albumids[$albumname]));
+			
 			foreach($xml->entry as $photo)
 			{
 				// Warum drei URLs?
@@ -279,7 +293,9 @@ class TheViewInside extends Theme
 			} 
 		}
 		catch(exception $e) { $photos = _t(vsprintf("No photos available or an error occured. Sometimes reloading the page helps. %s", $e), $this->name); }
-
+		
+		// TODO: Add cache expire option to the admin interface
+		Cache::set(array($this->name, "album_$albumname"), $photos, 3600 * 24 * 7);
 		return $photos;
 	}
 	
