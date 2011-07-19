@@ -7,16 +7,6 @@
 
 class TheViewInside extends Theme
 {
-	/**
-	 * Number of previously items to display.
-	 */
-	const PREVIOUSLY_ITEMS = 3;
-
-	/**
-	 * Number of latest items to display.
-	 */
-	const LATEST_ITEMS = 3;
-	
 	var $defaultsettings = array(
 		'content_types' => 'entry',
 		);
@@ -90,21 +80,10 @@ class TheViewInside extends Theme
 			$this->assign('page', $page );
 		}
 
-		$this->assign( 'show_previously', false );
-		$this->assign( 'show_latest', false );
 		$this->assign( 'multipleview', false);
 		$action = Controller::get_action();
 		if ($action == 'display_home' || $action == 'display_entries' || $action == 'search' || $action == 'display_tag' || $action == 'display_date') {
 			$this->assign('multipleview', true);
-			// Was tut das Zeug im if-block unter diesem Kommentar?
-			$offset = (int) ( ( ( $page + 1 ) - 1 ) * Options::get('pagination') );
-			$this->assign( 'previously', Posts::get(array ( 'status' => 'published', 'offset' => $offset, 'limit' => self::PREVIOUSLY_ITEMS ) ) );
-			$this->assign( 'show_previously', true );
-		}
-
-		if ($action != 'display_home') {
-			$this->assign( 'previously', Posts::get(array ( 'status' => 'published', 'offset' => 0, 'limit' => self::LATEST_ITEMS ) ) );
-			$this->assign( 'show_previously', true );
 		}
 
 		$this->assign('controller_action', $action);
