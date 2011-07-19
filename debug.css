@@ -55,3 +55,18 @@ a:hover.entry-commentcount {
 	margin: 0px 6px 6px 6px;
 	max-height:140px!important;
 }
+
+.notfeatured {
+	height:32px;
+	width:32px;
+	margin: 0 5px 5px 0;
+	float:left;
+	background:url('/global/rating-stern-leer.png');
+}
+.featured {
+	height:32px;
+	width:32px;
+	margin: 0 5px 5px 0;
+	float:left;
+	background:url('/global/rating-stern-voll.png');
+}
