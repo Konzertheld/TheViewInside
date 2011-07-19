@@ -175,7 +175,10 @@ class TheViewInside extends Theme
 		return $imagelist;
 	}
 	
-	// Build a string with the post's meta, regarding the content type and which meta is available
+	/**
+	 * Build a string with the post's meta, regarding the content type and which meta is available
+	 * Reassign $post so it always contains the current post in multiple views
+	 */
 	public function theme_metaline($theme, $post)
 	{
 		// TODO: Fallback!
@@ -223,60 +226,6 @@ class TheViewInside extends Theme
 		$post->info->max_images = $form->max_images->value;
 	}
 	
-	public function get_picasa_images($albumname, $userid = null, $size = "s200")
-	{
-		try
-		{
-			//Check if the photos are already cached first because then we're already finished
-			if(Cache::has(array($this->name, "album_$albumname")))
-				return Cache::get(array($this->name, "album_$albumname"));
-			
-			$picasa = new Picasa();
-			$picasa->userid = $userid;
-			
-			// Get these crappy album IDs and the links
-			if(Cache::has(array($this->name, "picasa_albumids")) && Cache::has(array($this->name, "picasa_albumlinks")))
-			{
-				$albumids = Cache::get(array($this->name, "picasa_albumids"));
-				$albumlinks = Cache::get(array($this->name, "picasa_albumlinks"));
-			}
-			else
-			{
-				$xml = $picasa->get_albums();
-				
-				foreach($xml->channel->item as $album)
-				{
-					$albumids[(string)$album->title] = (string)$album->children('http://schemas.google.com/photos/2007')->id;
-					$albumlinks[(string)$album->title] = (string)$album->link;
-					Cache::set(array($this->name, "picasa_albumids"), $albumids, 3600);
-					Cache::set(array($this->name, "picasa_albumlinks"), $albumlinks, 3600);
-				}
-			}
-			
-			// Get the actual photos
-			$xml = $picasa->get_photos(array("album" => $albumids[$albumname]));
-			
-			foreach($xml->entry as $photo)
-			{
-				// Warum drei URLs?
-				// TODO: Sind die nächsten drei Zeilen nicht eig über?
-				// $media = $photo->children('http://search.yahoo.com/mrss/');
-				// $props['thumbnail_url'] = (string)$media->group->thumbnail->attributes()->url;
-				// $props['title'] = (string)$media->group->title;
-				$src = (string)$photo->content->attributes()->src;
-				$props['url'] = substr($src,0,strrpos($src,'/'))."/$size".substr($src,strrpos($src,'/'));
-				$props['picasa_url'] = $src;
-				
-				$photos[] = $props;
-			} 
-		}
-		catch(exception $e) { $photos = _t(vsprintf("No photos available or an error occured. Sometimes reloading the page helps. %s", $e), $this->name); }
-		
-		// TODO: Add cache expire option to the admin interface
-		Cache::set(array($this->name, "album_$albumname"), $photos, 3600 * 24 * 7);
-		return $photos;
-	}
-	
 	function filter_post_tvi_photos($out, $thispost)
 	{
 		// Discard values from other plugins (usually, the $out parameter should be empty)
@@ -312,10 +261,12 @@ class TheViewInside extends Theme
 			// TODO: Multiple images!
 			$out[] = $thispost->info->viewinsidephoto;
 		}
-		// 3. Picasa album?
+		// 3. Picasa album? Hack for old way with new picasa silo
+		// TODO: Remove all those, remove the field and instead just check if $post->picasa_images contains something and
+		// if yes, put it into $out
 		else if(substr($thispost->info->viewinsidephoto,0,7)=="picasa:")
 		{
-			$out = array_merge($out, $this->get_picasa_images(substr($thispost->info->viewinsidephoto,7), $thispost->user_id));
+			$thispost->info->picasa_album = substr($thispost->info->viewinsidephoto,7);
 		}
 		// 4. Internal image in user directory?
 		else if(is_file(Site::get_dir('user').$thispost->info->viewinsidephoto))
@@ -323,6 +274,9 @@ class TheViewInside extends Theme
 			// TODO: Multiple images!
 			$out[] = Site::get_url('user').$thispost->info->viewinsidephoto;
 		}
+		
+		// 5. Grab picasa images
+		$out = array_merge($thispost->picasa_images);
 		
 		// Apply limit and random order
 		// TODO: Decide when to randomize here

@@ -10,5 +10,8 @@
 		<area name="headerbar">
 			<description><![CDATA[The header area]]></description>
 		</area>
+		<area name="sidephotos">
+			<description><![CDATA[Per-post sidephotos]]></description>
+		</area>
 	</areas>
 </pluggable>
