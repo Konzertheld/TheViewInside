@@ -28,7 +28,7 @@
 						<h3><a href="/konzertheld-live">Konzertheld live: Berichte &uuml;ber Konzerte und andere Events</a></h3>
 						<p>Eventliste</p>
 					</div></li></ul>
-					<?php include("previously.php"); ?>
+					<?php $theme->featuredarticles(); ?>
 				</div>
 			</div>
 			<div id="toptagcloud-container">
