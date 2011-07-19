@@ -68,8 +68,7 @@ class TheViewInside extends Theme
 		$ui->content_types->size = count($types);
 		$ui->content_types->multiple = true;		
 		$ui->content_types->options = $types;
-		$ui->blatest->maxlength = 3;
-
+		
 		// Save
 		$ui->append( 'submit', 'save', _t( 'Save', $this->name ) );
 		$ui->set_option( 'success_message', _t( 'Options saved', $this->name ) );
