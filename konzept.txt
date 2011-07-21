@@ -1,4 +1,0 @@
-Alles was klickbar ist grün und bei hover unterstreichen
-Linkmarker - wie img exkludieren?
-Dezenten Rahmen um Bilder in Posts wie bei Fadein!
-Bilder in Posts automatisch max height und max width zuweisen
