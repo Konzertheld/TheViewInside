@@ -276,7 +276,8 @@ class TheViewInside extends Theme
 		}
 		
 		// 5. Grab picasa images
-		$out = array_merge($thispost->picasa_images);
+		if(count($thispost->picasa_images))
+			$out = array_merge($out, $thispost->picasa_images);
 		
 		// Apply limit and random order
 		// TODO: Decide when to randomize here
