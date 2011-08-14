@@ -10,6 +10,9 @@
 		<area name="headerbar">
 			<description><![CDATA[The header area]]></description>
 		</area>
+		<area name="footer">
+			<description><![CDATA[The footer. Who would have thought that.]]></description>
+		</area>
 		<area name="sidephotos">
 			<description><![CDATA[Per-post sidephotos]]></description>
 		</area>
