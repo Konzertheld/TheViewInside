@@ -19,22 +19,6 @@
 	<div id="headerbarcontainer">
 		<div id="headerbar">
 			<?php $theme->area('headerbar'); ?>
-			<div id="inhaltentdecken-container">
-				<div id="inhaltentdecken">
-					<h2>Inhalt entdecken</h2>
-					<ul class="postlist"><li><div class="postlist-meta">
-						<h3><a href="/konzertheld-live">Konzertheld live: Berichte &uuml;ber Konzerte und andere Events</a></h3>
-						<p>Eventliste</p>
-					</div></li></ul>
-					<?php $theme->featuredarticles(); ?>
-				</div>
-			</div>
-			<div id="toptagcloud-container">
-				<div class="tagcloud" id="toptagcloud">
-					<h2>Häufige Themen</h2>
-					<?php $theme->tag_cloud(60);?>
-				</div>
-			</div>
 		</div>
 		<a href="/" id="homelogo" title="Startseite">Konzertheld.de</a>
 		<div id="socialcontainer">

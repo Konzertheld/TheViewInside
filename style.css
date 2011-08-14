@@ -91,22 +91,22 @@ body {
 	background: url('images/header9.png') top center no-repeat;
 }
 #headerbar h1 {
-	display:none;
+	display: none;
 }
 #headerbar h2 {
 	font-size: 20px;
 	font-weight: normal;
 }
-#latestcomments-container, #inhaltentdecken-container {
-	width:30%;
+#headerbar .first, #headerbar .index_1 {
+	width: 30%;
 	float: left;
 }
-#toptagcloud-container {
-	width:40%;
+#headerbar .last {
+	width: 40%;
 	float: left;
 }
-#latestcomments, #inhaltentdecken, #toptagcloud {
-	margin: 0 20px auto auto;
+#headerbar .block div {
+	padding: 0 10px 0 0;
 }
 
 #socialcontainer {
@@ -207,7 +207,7 @@ body {
 	font-weight:normal;
 	font-size:36px;
 }
-.postmeta-meta {
+.event .postmeta-meta {
 	font-weight:bold;
 	font-size:110%;
 }
