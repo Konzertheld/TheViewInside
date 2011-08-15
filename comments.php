@@ -12,7 +12,7 @@ else
 		{
 			printf(_n('%1$d comment so far', '%1$d comments so far', $post->comments->moderated->count), $post->comments->moderated->count);
 		}
-		else _e('No comments yet. Start the discussion!', $theme->name); ?>
+		else if(!$post->info->comments_disabled) _e('No comments yet. Start the discussion!', $theme->name); ?>
 	</h3>
 	<?php if($comments->count)
 	{
@@ -41,7 +41,7 @@ else
 	}
 	?>
 	<?php
-	if($usercanmoderate)
+	if($usercanmoderate && $post->comments->unapproved->count + $post->comments->spam->count > 0)
 	{	
 		?><p id="unapproved-comments"><?php
 		printf(_n('%1$d unmoderated comment. ', '%1$d unmoderated comments. ', $post->comments->unapproved->count + $post->comments->spam->count), $post->comments->unapproved->count + $post->comments->spam->count);
@@ -57,7 +57,7 @@ else
 		</div>
 	<?php else: ?>
 		<div id="comments-closed">
-			<p><?php _e( "Comments are closed for this post", $theme->name ); ?></p>
+			<p><?php _e( "Comments are closed for this post.", $theme->name ); ?></p>
 		</div>
 	<?php endif; ?>
 </div>
