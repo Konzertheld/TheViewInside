@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/style.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/color.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/debug.css" media="screen" />
+	<?php if($showgoogleplus): ?><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><?php endif; ?>
 	<!--[if IE]>
 		<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/ie.css" media="screen" />
 	<![endif]-->

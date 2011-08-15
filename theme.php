@@ -9,6 +9,7 @@ class TheViewInside extends Theme
 {
 	var $defaultsettings = array(
 		'content_types' => 'entry',
+		'showgoogleplus' => false,
 		);
 		
 	var $image_extensions = array('.png', '.jpg');
@@ -59,6 +60,8 @@ class TheViewInside extends Theme
 		$ui->content_types->multiple = true;
 		$ui->content_types->options = $types;
 		
+		$ui->append('checkbox', 'showgoogleplus', __CLASS__.'__showgoogleplus', _t('Show Google +1 Button:', __CLASS__));
+		
 		foreach(Users::get_all() as $user)
 			$users[$user->id] = $user->displayname;
 		$ui->append( 'select', 'default_authors', __CLASS__.'__default_authors', _t( 'These authors are no guests:', __CLASS__ ) );
@@ -98,6 +101,7 @@ class TheViewInside extends Theme
 		// Use theme options to set values that can be used directly in the templates
 		$opts = Options::get_group( __CLASS__ );
 		$this->assign('content_types', $opts['content_types']);
+		$this->assign('showgoogleplus', $opts['showgoogleplus']);
 	}
 
 	/**
