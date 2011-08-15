@@ -106,7 +106,15 @@ class TheViewInside extends Theme
 		// Save
 		$ui->append( 'submit', 'save', _t( 'Save', __CLASS__ ) );
 		$ui->set_option( 'success_message', _t( 'Options saved', __CLASS__ ) );
+		$ui->on_success('options_callback');
 		$ui->out();
+	}
+	
+	function options_callback($form)
+	{
+		$form->save();
+		Utils::redirect(Site::get_url('admin', 'page=themes'));
+		return false;
 	}
 
 	/**
