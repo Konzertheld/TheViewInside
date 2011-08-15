@@ -228,6 +228,7 @@ class TheViewInside extends Theme
 	
 	function filter_post_tvi_photos($out, $thispost)
 	{
+		// TODO: Outsource this into a block. Block options should then be all these points here. Picasa would be an option then, too, which makes this function check $post->picasa_images
 		// Discard values from other plugins (usually, the $out parameter should be empty)
 		$out = array();
 		
