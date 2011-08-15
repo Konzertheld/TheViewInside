@@ -21,7 +21,7 @@ else
 		{
 			?>
 			<div id="comment-<?php echo $comment->id; ?>" class="comment<?php if($evenoddcomment) echo ' even'; else echo ' odd';?>">
-				<div class="gravatar"><img src="<?php echo $comment->gravatar ?>" alt="<?php printf(_t("%s's Gravatar", $theme->name), $comment->name); ?>"></div>
+				<?php $theme->comment_gravatar($comment); ?>
 				<div class="comment-main">
 					<div class="comment-meta">
 						<?php printf(_t(' %s said at %s:', $theme->name),
