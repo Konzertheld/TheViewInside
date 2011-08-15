@@ -11,6 +11,7 @@ class TheViewInside extends Theme
 		'content_types' => 'entry',
 		'gpmulti' => 0,
 		'gpsingle' => 1,
+		'socialnets' => '',
 		);
 		
 	var $image_extensions = array('.png', '.jpg');
@@ -56,13 +57,10 @@ class TheViewInside extends Theme
 	{
 		$this->initialize_options();
 		
-		// Apply Format::autop() to post content
-		//Format::apply( 'autop', 'post_content_out' );
-
 		// Apply Format::autop() to comment content
-		Format::apply( 'autop', 'comment_content_out' );
+		Format::apply('autop', 'comment_content_out');
 		
-		$this->load_text_domain( 'TheViewInside' );
+		$this->load_text_domain('TheViewInside');
 	}
 	
 	/**
@@ -70,7 +68,7 @@ class TheViewInside extends Theme
 	 */
 	public function action_theme_ui( $theme )
 	{
-		$ui = new FormUI( __CLASS__ );
+		$ui = new FormUI(__CLASS__);
 		// Get the available content types
 		$types = Post::list_active_post_types();
 		unset($types['any']);
@@ -80,20 +78,30 @@ class TheViewInside extends Theme
 			// pointless, because singular/plural cannot be get here
 			// $types[$id] = Post::type_name($id);
 		// }
-		$ui->append( 'select', 'content_types', __CLASS__.'__content_types', _t( 'Content Types in pagination:', __CLASS__ ) );
+		$ui->append( 'select', 'content_types', __CLASS__ . '__content_types', _t( 'Content Types in pagination:', __CLASS__ ) );
 		$ui->content_types->size = count($types);
 		$ui->content_types->multiple = true;
 		$ui->content_types->options = $types;
 		
-		$ui->append('checkbox', 'gpmulti', __CLASS__.'__gpmulti', _t('Show Google +1 Button on multiple views:', __CLASS__));
-		$ui->append('checkbox', 'gpsingle', __CLASS__.'__gpsingle', _t('Show Google +1 Button on single views:', __CLASS__));
+		$ui->append('checkbox', 'gpmulti', __CLASS__ . '__gpmulti', _t('Show Google +1 Button on multiple views:', __CLASS__));
+		$ui->append('checkbox', 'gpsingle', __CLASS__ . '__gpsingle', _t('Show Google +1 Button on single views:', __CLASS__));
 		
 		foreach(Users::get_all() as $user)
 			$users[$user->id] = $user->displayname;
-		$ui->append( 'select', 'default_authors', __CLASS__.'__default_authors', _t( 'These authors are no guests:', __CLASS__ ) );
+		$ui->append( 'select', 'default_authors', __CLASS__ . '__default_authors', _t( 'These authors are no guests:', __CLASS__ ) );
 		$ui->default_authors->size = count($users);
 		$ui->default_authors->multiple = true;
 		$ui->default_authors->options = $users;
+		
+		$ui->append('fieldset', 'social', _t('Social Icons', __CLASS__));
+		$ui->social->append('textmulti', 'socialnets', __CLASS__ . '__socialnets', _t('Social nets you are using', __CLASS__));
+		
+		$opts = Options::get_group(__CLASS__);
+		if(is_array($opts['socialnets']))
+		{
+			foreach($opts['socialnets'] as $socialnet)
+				$ui->social->append('text', $socialnet . '_img', __CLASS__ . '__' . $socialnet . '__img', _t('Image for %s', array($socialnet), __CLASS__));
+		}
 		
 		// Save
 		$ui->append( 'submit', 'save', _t( 'Save', __CLASS__ ) );
