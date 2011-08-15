@@ -47,7 +47,7 @@ else
 	{	
 		?><p id="unapproved-comments"><?php
 		printf(_n('%1$d unmoderated comment. ', '%1$d unmoderated comments. ', $post->comments->unapproved->count + $post->comments->spam->count), $post->comments->unapproved->count + $post->comments->spam->count);
-		?><a href="<?php Site::out_url('admin'); ?>"><?php _e("Go to comments admin."); ?></a></p><?php
+		?><a href="<?php Site::out_url('admin'); ?>/comments"><?php _e("Go to comments admin."); ?></a></p><?php
 	}
 	?>
 	<?php if (!$post->info->comments_disabled):
