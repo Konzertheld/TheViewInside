@@ -8,7 +8,6 @@
 				<h2 class="postmeta-title"><a href="<?php echo $post->permalink; ?>" title="<?php echo $post->title_out; ?>"><?php echo $post->title_out; ?></a></h2>
 				<div class="postmeta-meta">
 					<?php $theme->metaline($post); ?>
-					<?php if($post->isguestpost) printf( _t('Guest article by %s', $theme->name), $post->author->displayname); ?>
 				</div>
 				<?php if (count($post->tags)) : ?>
 				<div class="postmeta-tags">

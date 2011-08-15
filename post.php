@@ -4,7 +4,6 @@
 		<h2 class="postmeta-title"><a href="<?php echo $content->permalink; ?>" title="<?php echo $content->title_out; ?>"><?php echo $content->title_out; ?></a></h2>
 		<div class="postmeta-meta">
 			<?php $theme->metaline($content); ?>
-			<?php if($content->isguestpost) printf( _t('Guest article by %s', $theme->name), $content->author->displayname); ?>
 		</div>
 		<?php if (count($content->tags)) : ?>
 		<div class="postmeta-tags">
