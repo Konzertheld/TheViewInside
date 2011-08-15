@@ -12,7 +12,9 @@ else
 		{
 			printf(_n('%1$d comment so far', '%1$d comments so far', $post->comments->moderated->count), $post->comments->moderated->count);
 		}
-		else if(!$post->info->comments_disabled) _e('No comments yet. Start the discussion!', $theme->name); ?>
+		else if(!$post->info->comments_disabled) _e('No comments yet. Start the discussion!', $theme->name);
+		else _e('No comments');
+		?>
 	</h3>
 	<?php if($comments->count)
 	{
