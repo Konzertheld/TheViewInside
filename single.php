@@ -18,9 +18,6 @@
 			<div class="postcontent-container">
 				<div class="postcontent<?php if(count($post->tvi_photos)) echo " withsidecontent"; ?>">
 					<?php echo $post->content_out;?>
-					<?php if (User::identify()->id): ?>
-					<p class="editpostlink"><a href="<?php Site::out_url('admin');?>/publish?id=<?php echo $post->id; ?>" title="<?php printf(_t('Edit %s', $theme->name), $post->title); ?>"><?php _e('Edit post', $theme->name); ?></a></p>
-					<?php endif; ?>
 				</div>
 				<?php if(count($post->tvi_photos)): ?>
 				<div class='postside'>
