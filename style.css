@@ -113,6 +113,7 @@ body {
 	position: absolute;
 	top: 15px;
 	right: -24px;
+	z-index:1;
 }
 
 /* Social Net icons */
@@ -120,7 +121,6 @@ body {
 	display: block;
 	width: 48px;
 	height: 48px;
-	z-index:9999999;
 }
 /* #homelogo {
 	background:transparent url('images/konzertheld-vertikal.png') no-repeat;
@@ -194,8 +194,23 @@ body {
 #net-deviantart:hover {
 	background:transparent url('images/icons/deviantarti.png') no-repeat;
 }
+#net-gplus {
+	background:transparent url('images/icons/googleplus.png') no-repeat;
+}
+#net-gplus:hover {
+	background:transparent url('images/icons/googleplusi.png') no-repeat;
+}
 
 /* POSTS AND SIDEPHOTOS */
+.pagination {
+	margin: 0;
+	padding: 20px 0 0 0;
+	float:right;
+}
+.pagination a:hover {
+	text-decoration: none;
+}
+
 .post {
 	clear:both;
 	padding:15px 40px 15px 40px;
@@ -206,6 +221,12 @@ body {
 .postmeta-title {
 	font-weight:normal;
 	font-size:36px;
+}
+.single .postmeta-title {	
+	float: left;
+}
+.postmeta-meta {
+	clear: both;
 }
 .event .postmeta-meta {
 	font-weight:bold;
