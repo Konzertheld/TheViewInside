@@ -202,12 +202,12 @@ body {
 }
 
 /* POSTS AND SIDEPHOTOS */
-.pagination {
+.pagination, .postnavi {
 	margin: 0;
 	padding: 20px 0 0 0;
 	float:right;
 }
-.pagination a:hover {
+.pagination a:hover, .postnavi a:hover {
 	text-decoration: none;
 }
 
@@ -222,8 +222,9 @@ body {
 	font-weight:normal;
 	font-size:36px;
 }
-.single .postmeta-title {	
+.postmeta-title {	
 	float: left;
+	max-width: 85%;
 }
 .postmeta-meta {
 	clear: both;
