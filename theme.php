@@ -56,8 +56,15 @@ class TheViewInside extends Theme
 		// }
 		$ui->append( 'select', 'content_types', __CLASS__.'__content_types', _t( 'Content Types in pagination:', $this->name ) );
 		$ui->content_types->size = count($types);
-		$ui->content_types->multiple = true;		
+		$ui->content_types->multiple = true;
 		$ui->content_types->options = $types;
+		
+		foreach(Users::get_all() as $user)
+			$users[$user->id] = $user->displayname;
+		$ui->append( 'select', 'default_authors', __CLASS__.'__default_authors', _t( 'These authors are no guests:', __CLASS__ ) );
+		$ui->default_authors->size = count($users);
+		$ui->default_authors->multiple = true;
+		$ui->default_authors->options = $users;
 		
 		// Save
 		$ui->append( 'submit', 'save', _t( 'Save', $this->name ) );
@@ -335,7 +342,8 @@ class TheViewInside extends Theme
 	
 	function filter_post_isguestpost($out, $post)
 	{
-		return $post->author->displayname != "Konzertheld";
+		$opts = Options::get_group( __CLASS__ );
+		return !in_array($post->author->id, $opts['default_authors']);
 	}
 }
 ?>
