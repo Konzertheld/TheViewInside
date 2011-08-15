@@ -1,4 +1,7 @@
-<?php if ( ! defined('HABARI_PATH' ) ) { die( _t('Please do not load this page directly.') ); } ?>
+<?php
+if ( ! defined('HABARI_PATH' ) ) { die( _t('Please do not load this page directly.') ); }
+// DO NOT RENAME THIS FILE. Files named content.php cause conflicts with template fallbacks.
+?>
 <?php
 $theme->evenodd = true;
 foreach ( $posts as $post )
