@@ -1,19 +1,27 @@
 <?php if ( ! defined('HABARI_PATH' ) ) { die( _t('Please do not load this page directly.') ); } ?>
+<?php
+$usercanmoderate = (User::identify()->id && (User::identify()->can("manage_all_comments") || (User::identify()->can("manage_own_post_comments") && $post->id == User::identify()->id)));
+if($usercanmoderate)
+	$comments = $post->comments;
+else
+	$comments = $post->comments->moderated;
+?>
 <div id="comments">
 	<h3 id="comments-headline">
-		<?php if(count($post->comments->moderated))
+		<?php if($comments->count)
 		{
-			printf( _n('%1$d comment so far', '%1$d comments so far', $post->comments->moderated->count), $post->comments->moderated->count );?>. <?php
+			printf(_n('%1$d comment so far', '%1$d comments so far', $post->comments->moderated->count), $post->comments->moderated->count);
 		}
 		else _e('No comments yet. Start the discussion!', $theme->name); ?>
 	</h3>
-	<?php if ( $post->comments->moderated->count ): ?>
-		<?php $evenoddcomment = true;
-		foreach ( $post->comments->moderated as $comment ): ?>
+	<?php if($comments->count)
+	{
+		$evenoddcomment = true;
+		foreach ($comments as $comment)
+		{
+			?>
 			<div id="comment-<?php echo $comment->id; ?>" class="comment<?php if($evenoddcomment) echo ' even'; else echo ' odd';?>">
-				<?php if (Plugins::is_loaded('Gravatar')): ?>
 				<div class="gravatar"><img src="<?php echo $comment->gravatar ?>" alt="<?php printf(_t("%s's Gravatar", $theme->name), $comment->name); ?>"></div>
-				<?php endif; ?>
 				<div class="comment-main">
 					<div class="comment-meta">
 						<?php printf(_t(' %s said at %s:', $theme->name),
@@ -22,27 +30,34 @@
 					</div>
 					<div class="comment-content">
 						<?php echo $comment->content_out; ?>
-						<?php if ( $comment->status == Comment::STATUS_UNAPPROVED ) : ?>
-						<p class="newunapproved"><em><?php _e( 'Your comment is awaiting moderation', $theme->name ) ;?></em></p>
+						<?php if($comment->status == Comment::STATUS_UNAPPROVED || $comment->status == Comment::STATUS_SPAM): ?>
+						<p class="newunapproved"><em><?php _e( 'This comment is awaiting moderation', $theme->name ) ;?></em></p>
 						<?php endif; ?>
 					</div>
 				</div>
 			</div>
-		<?php $evenoddcomment = !$evenoddcomment;
-		endforeach; ?>
-	<?php endif; ?>
-	<?php if ( !$post->info->comments_disabled ) : ?>
-		<?php if(count($post->comments->moderated)): ?><h3><?php _e('Say something!', $theme->name); ?></h3><?php endif; ?>
+			<?php $evenoddcomment = !$evenoddcomment;
+		}
+	}
+	?>
+	<?php
+	if($usercanmoderate)
+	{	
+		?><p id="unapproved-comments"><?php
+		printf(_n('%1$d unmoderated comment. ', '%1$d unmoderated comments. ', $post->comments->unapproved->count + $post->comments->spam->count), $post->comments->unapproved->count + $post->comments->spam->count);
+		?><a href="<?php Site::out_url('admin'); ?>"><?php _e("Go to comments admin."); ?></a></p><?php
+	}
+	?>
+	<?php if (!$post->info->comments_disabled):
+		if($comments->count) echo "<h3>" . _t('Say something!', $theme->name) . "</h3>"; // Comment form header is unnecessary if there are no comments
+		?>
 		<div id="comment-form">
-			<?php 	if ( Session::has_messages() ) Session::messages_out(); ?>
-			<?php 	$post->comment_form()->out(); ?>
-			<?php if ( Plugins::is_loaded( 'Captcha' ) ): $theme->show_captcha(); endif; ?>
-			Du kannst Kommentare zu diesem Post <a href="<?php echo $post->permalink;?>/atom/comments">hier abonnieren</a>. Oder du abonnierst den <a href="<?php URL::out( 'atom_feed_comments' ); ?>">globalen Kommentarfeed</a>.
+			<?php if (Session::has_messages()) Session::messages_out(); ?>
+			<?php $post->comment_form()->out(); ?>
 		</div>
-	<?php else: ?> 
+	<?php else: ?>
 		<div id="comments-closed">
-				<p><?php _e( "Comments are closed for this post", $theme->name ); ?></p>
+			<p><?php _e( "Comments are closed for this post", $theme->name ); ?></p>
 		</div>
 	<?php endif; ?>
-
 </div>
