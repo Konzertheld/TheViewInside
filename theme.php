@@ -11,6 +11,8 @@ class TheViewInside extends Theme
 		'content_types' => 'entry',
 		'gpmulti' => 0,
 		'gpsingle' => 1,
+		'social_postfeed' => 1,
+		'social_commentsfeed' => 0,
 		'socialnets' => '',
 		);
 		
@@ -63,45 +65,58 @@ class TheViewInside extends Theme
 		$this->load_text_domain('TheViewInside');
 	}
 	
+	public function action_admin_header($theme)
+	{
+		if ($theme->page == 'themes')
+		{
+			Stack::add('admin_stylesheet', array($this->get_url() . '/admin.css', 'screen'));
+		}
+	}
+	
 	/**
 	 * Create theme options
 	 */
 	public function action_theme_ui( $theme )
 	{
 		$ui = new FormUI(__CLASS__);
+		$ui->append('fieldset', 'general', _t('General settings', __CLASS__));
 		// Get the available content types
 		$types = Post::list_active_post_types();
 		unset($types['any']);
 		$types = array_flip($types);
-		// foreach($types as $id => $type)
-		// {
-			// pointless, because singular/plural cannot be get here
-			// $types[$id] = Post::type_name($id);
-		// }
-		$ui->append( 'select', 'content_types', __CLASS__ . '__content_types', _t( 'Content Types in pagination:', __CLASS__ ) );
-		$ui->content_types->size = count($types);
-		$ui->content_types->multiple = true;
-		$ui->content_types->options = $types;
-		
-		$ui->append('checkbox', 'gpmulti', __CLASS__ . '__gpmulti', _t('Show Google +1 Button on multiple views:', __CLASS__));
-		$ui->append('checkbox', 'gpsingle', __CLASS__ . '__gpsingle', _t('Show Google +1 Button on single views:', __CLASS__));
+		$ui->general->append( 'select', 'content_types', __CLASS__ . '__content_types', _t( 'Content Types in pagination:', __CLASS__ ) );
+		$ui->general->content_types->size = count($types);
+		$ui->general->content_types->multiple = true;
+		$ui->general->content_types->options = $types;
 		
 		foreach(Users::get_all() as $user)
 			$users[$user->id] = $user->displayname;
-		$ui->append( 'select', 'default_authors', __CLASS__ . '__default_authors', _t( 'These authors are no guests:', __CLASS__ ) );
-		$ui->default_authors->size = count($users);
-		$ui->default_authors->multiple = true;
-		$ui->default_authors->options = $users;
+		$ui->general->append( 'select', 'default_authors', __CLASS__ . '__default_authors', _t('These authors are no guests:', __CLASS__ ));
+		$ui->general->default_authors->size = count($users);
+		$ui->general->default_authors->multiple = true;
+		$ui->general->default_authors->options = $users;
 		
 		$ui->append('fieldset', 'social', _t('Social Icons', __CLASS__));
-		$ui->social->append('textmulti', 'socialnets', __CLASS__ . '__socialnets', _t('Social nets you are using', __CLASS__));
+		$ui->social->append('textarea', 'socialnets', __CLASS__ . '__socialnets', _t('Social nets you are using, separated by commas', __CLASS__));
+		$ui->social->socialnets->rows = 3;
 		
 		$opts = Options::get_group(__CLASS__);
-		if(is_array($opts['socialnets']))
+		if(isset($opts['socialnets']))
 		{
-			foreach($opts['socialnets'] as $socialnet)
-				$ui->social->append('text', $socialnet . '_img', __CLASS__ . '__' . $socialnet . '__img', _t('Image for %s', array($socialnet), __CLASS__));
+			$socialnetslist = explode(',', $opts['socialnets']);
+			foreach($socialnetslist as $socialnet)
+			{
+				$c = $ui->social->append('text', Utils::slugify($socialnet) . '_img', __CLASS__ . '__' . Utils::slugify($socialnet) . '__img', _t('Image for %s', array($socialnet), __CLASS__));
+				$c->class[] = "tvi_leftcol";
+				$d = $ui->social->append('text', Utils::slugify($socialnet) . '_url', __CLASS__ . '__' . Utils::slugify($socialnet) . '__url', _t('URL for %s', array($socialnet), __CLASS__));
+				$d->class[] = "tvi_rightcol";
+			}
 		}
+		
+		$ui->social->append('checkbox', 'social_postfeed', __CLASS__ . '__social_postfeed', _t('Show post feed in social area', __CLASS__));
+		$ui->social->append('checkbox', 'social_commentsfeed', __CLASS__ . '__social_commentsfeed', _t('Show comments feed in social area', __CLASS__));
+		$ui->social->append('checkbox', 'gpmulti', __CLASS__ . '__gpmulti', _t('Show Google +1 Button on multiple views:', __CLASS__));
+		$ui->social->append('checkbox', 'gpsingle', __CLASS__ . '__gpsingle', _t('Show Google +1 Button on single views:', __CLASS__));
 		
 		// Save
 		$ui->append( 'submit', 'save', _t( 'Save', __CLASS__ ) );
@@ -116,6 +131,7 @@ class TheViewInside extends Theme
 	function options_callback($form)
 	{
 		$form->save();
+		Session::notice(_t('Options saved'));
 		Utils::redirect(URL::get('admin', 'page=themes'));
 		return false;
 	}
@@ -230,6 +246,29 @@ class TheViewInside extends Theme
 		}
 		
 		return $imagelist;
+	}
+	
+	public function theme_socialneticons($theme)
+	{
+		$out = "";
+		$opts = Options::get_group(get_class($theme));
+		if(isset($opts['socialnets']))
+		{
+			$socialnetslist = explode(',', $opts['socialnets']);
+			foreach($socialnetslist as $socialnet)
+			{
+				$socialurl = $opts[Utils::slugify($socialnet) . '__url'];
+				if(!empty($socialurl))
+				{
+					$out .= "<a href='$socialurl' id='net-" . Utils::slugify($socialnet) . "' title='$socialnet' class='socialneticon'></a>";
+				}
+			}
+		}
+		if($opts['social_postfeed'])
+			$out .= "<a href='" . URL::get('atom_feed', array('index' => 1)) . "' id='net-postfeed' title='" . _t('Atom feed for posts', __CLASS__) . "' class='socialneticon'></a>";
+		if($opts['social_commentsfeed'])
+			$out .= "<a href='" . URL::get('atom_feed_comments') . "' id='net-commentsfeed' title='" . _t('Atom feed for comments', __CLASS__) . "' class='socialneticon'></a>";
+		return $out;
 	}
 	
 	/**

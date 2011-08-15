@@ -1,0 +1,35 @@
+form label {
+	margin: 0 6px 3px 0!important;
+	clear:both;
+}
+#content_types, #default_authors {
+	float: left;
+	width: 45%;
+}
+#content_types label, #default_authors label, #socialnets label {
+	float: none;
+	display: block;
+	width: 80%;
+}
+#social {
+	clear: both;
+}
+.tvi_leftcol {
+	clear:both;
+	float:left;
+}
+.tvi_rightcol {
+	float:right;
+}
+.tvi_rightcol input {
+	width: 200px;
+}
+#social_postfeed, #gpmulti {
+	clear:both;
+}
+#social_postfeed, #social_commentsfeed, #gpmulti, #gpsingle {
+	float: left;
+}
+#gpmulti label, #gpsingle label, #social_postfeed label, #social_commentsfeed label {
+	width: 200px;
+}

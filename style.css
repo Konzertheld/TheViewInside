@@ -149,57 +149,6 @@ body {
 #homelogo:hover {
 	text-decoration:none;
 }
-#net-lastfm {
-	background:transparent url('images/icons/lastfm.png') no-repeat;
-}
-#net-lastfm:hover {
-	background:transparent url('images/icons/lastfmi.png') no-repeat;
-}
-#net-lastfm:active {
-	background:transparent url('images/icons/lastfmiu.png') no-repeat;
-}
-#net-picasa {
-	background:transparent url('images/icons/picasa.png') no-repeat;
-}
-#net-picasa:hover {
-	background:transparent url('images/icons/picasai.png') no-repeat;
-}
-#net-youtube {
-	background:transparent url('images/icons/youtube.png') no-repeat;
-}
-#net-youtube:hover {
-	background:transparent url('images/icons/youtubei.png') no-repeat;
-}
-#net-flickr {
-	background:transparent url('images/icons/flickr.png') no-repeat;
-}
-#net-flickr:hover {
-	background:transparent url('images/icons/flickri.png') no-repeat;
-}
-#net-rss {
-	background:transparent url('images/icons/rss.png') no-repeat;
-}
-#net-rss:hover {
-	background:transparent url('images/icons/rssi.png') no-repeat;
-}
-#net-bookcrossing {
-	background:transparent url('images/icons/bookcrossing.png') no-repeat;
-}
-#net-bookcrossing:hover {
-	background:transparent url('images/icons/bookcrossingi.png') no-repeat;
-}
-#net-deviantart {
-	background:transparent url('images/icons/deviantart.png') no-repeat;
-}
-#net-deviantart:hover {
-	background:transparent url('images/icons/deviantarti.png') no-repeat;
-}
-#net-gplus {
-	background:transparent url('images/icons/googleplus.png') no-repeat;
-}
-#net-gplus:hover {
-	background:transparent url('images/icons/googleplusi.png') no-repeat;
-}
 
 /* POSTS AND SIDEPHOTOS */
 .pagination, .postnavi {
