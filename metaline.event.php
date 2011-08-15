@@ -1,5 +1,4 @@
 <?php
-// TODO: Localise this correctly using classes
 // TODO: Put the strings in the theme options, there should be nothing hardcoded here
 // TODO: Should we really add the time, when no date is provided?
 _e("A report about ", $theme->name);
