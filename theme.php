@@ -9,7 +9,8 @@ class TheViewInside extends Theme
 {
 	var $defaultsettings = array(
 		'content_types' => 'entry',
-		'showgoogleplus' => false,
+		'gpmulti' => 0,
+		'gpsingle' => 1,
 		);
 		
 	var $image_extensions = array('.png', '.jpg');
@@ -18,12 +19,34 @@ class TheViewInside extends Theme
 	//$excludedclasses[] = "blockintextlinks";
 	//$excludedclasses[] = "blockintextrechts";
 	
+	/**
+	 * Set the default options if necessary.
+	 * Avoids errors on first theme activation and on theme upgrade.
+	 */
+	function initialize_options()
+	{
+		$opts = Options::get_group(__CLASS__);
+		if (empty($opts))
+		{
+			Options::set_group(__CLASS__, $this->defaultsettings);
+		}
+		else
+		{
+			foreach($this->defaultsettings as $defsettingi => $defsettingv)
+			{
+				if(empty($opts[$defsettingi]))
+					$opts[$defsettingi] = $defsettingv;
+			}
+			Options::set_group(__CLASS__, $opts);
+		}
+	}
+	
+	/**
+	 * Call initialization on theme activation.
+	 */
 	public function action_theme_activated()
 	{
-		$opts = Options::get_group( __CLASS__ );
-		if ( empty( $opts ) ) {
-			Options::set_group( __CLASS__, $this->defaults );
-		}
+		$this->initialize_options();
 	}
 	
 	/**
@@ -31,6 +54,8 @@ class TheViewInside extends Theme
 	 */
 	public function action_init_theme()
 	{
+		$this->initialize_options();
+		
 		// Apply Format::autop() to post content
 		//Format::apply( 'autop', 'post_content_out' );
 
@@ -60,7 +85,8 @@ class TheViewInside extends Theme
 		$ui->content_types->multiple = true;
 		$ui->content_types->options = $types;
 		
-		$ui->append('checkbox', 'showgoogleplus', __CLASS__.'__showgoogleplus', _t('Show Google +1 Button:', __CLASS__));
+		$ui->append('checkbox', 'gpmulti', __CLASS__.'__gpmulti', _t('Show Google +1 Button on multiple views:', __CLASS__));
+		$ui->append('checkbox', 'gpsingle', __CLASS__.'__gpsingle', _t('Show Google +1 Button on single views:', __CLASS__));
 		
 		foreach(Users::get_all() as $user)
 			$users[$user->id] = $user->displayname;
@@ -101,7 +127,8 @@ class TheViewInside extends Theme
 		// Use theme options to set values that can be used directly in the templates
 		$opts = Options::get_group( __CLASS__ );
 		$this->assign('content_types', $opts['content_types']);
-		$this->assign('showgoogleplus', $opts['showgoogleplus']);
+		$this->assign('gpmulti', $opts['gpmulti']);
+		$this->assign('gpsingle', $opts['gpsingle']);
 	}
 
 	/**

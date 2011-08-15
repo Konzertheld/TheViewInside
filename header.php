@@ -2,14 +2,14 @@
 <?php error_reporting(1); ?>
 <!DOCTYPE HTML>
 <head>
-	<title><?php if(!$theme->multipleview) { echo $post->title." | "; Options::out( 'title' ); } else { Options::out( 'title' ); echo ' | '; Options::out( 'tagline' ); } ?></title>
+	<title><?php if(!$multipleview) { echo $post->title." | "; Options::out( 'title' ); } else { Options::out( 'title' ); echo ' | '; Options::out( 'tagline' ); } ?></title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 	<meta name="generator" content="Habari <?php echo Version::get_habariversion() ?>" />
 	<link rel="alternate" type="application/atom+xml" title="Atom 1.0" href="<?php $theme->feed_alternate(); ?>" />
 	<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/style.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/color.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/debug.css" media="screen" />
-	<?php if($showgoogleplus): ?><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><?php endif; ?>
+	<?php if(($multipleview && $gpmultiple) || (!$multipleview && $gpsingle)): ?><script type="text/javascript" src="https://apis.google.com/js/plusone.js">{parsetags: 'explicit'}</script><?php endif; ?>
 	<!--[if IE]>
 		<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/ie.css" media="screen" />
 	<![endif]-->
