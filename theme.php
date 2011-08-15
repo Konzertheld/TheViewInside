@@ -24,7 +24,7 @@ class TheViewInside extends Theme
 			Options::set_group( __CLASS__, $this->defaults );
 		}
 	}
-		
+	
 	/**
 	 * Execute on theme init to apply these filters to output
 	 */
@@ -54,7 +54,7 @@ class TheViewInside extends Theme
 			// pointless, because singular/plural cannot be get here
 			// $types[$id] = Post::type_name($id);
 		// }
-		$ui->append( 'select', 'content_types', __CLASS__.'__content_types', _t( 'Content Types in pagination:', $this->name ) );
+		$ui->append( 'select', 'content_types', __CLASS__.'__content_types', _t( 'Content Types in pagination:', __CLASS__ ) );
 		$ui->content_types->size = count($types);
 		$ui->content_types->multiple = true;
 		$ui->content_types->options = $types;
@@ -67,8 +67,8 @@ class TheViewInside extends Theme
 		$ui->default_authors->options = $users;
 		
 		// Save
-		$ui->append( 'submit', 'save', _t( 'Save', $this->name ) );
-		$ui->set_option( 'success_message', _t( 'Options saved', $this->name ) );
+		$ui->append( 'submit', 'save', _t( 'Save', __CLASS__ ) );
+		$ui->set_option( 'success_message', _t( 'Options saved', __CLASS__ ) );
 		$ui->out();
 	}
 
@@ -123,7 +123,7 @@ class TheViewInside extends Theme
 			$morepos = stripos($content, "<!--more-->");
 			if(!$morepos) $morepos = stripos($content, "<!-- more -->");
 			if($morepos != false)
-				$newcontent = substr($content, 0, $morepos)."<p><a class='readmorelink' href='".$post->permalink."' title='".sprintf(_t("Continue reading %s", $this->name),$post->title)."'>".sprintf(_t("Continue reading %s", $this->name),$post->title)."</a></p>";
+				$newcontent = substr($content, 0, $morepos)."<p><a class='readmorelink' href='".$post->permalink."' title='".sprintf(_t("Continue reading %s", __CLASS__),$post->title)."'>".sprintf(_t("Continue reading %s", __CLASS__),$post->title)."</a></p>";
 		}
 		
 		// Remove images
@@ -200,14 +200,14 @@ class TheViewInside extends Theme
 	public function action_form_publish($form, $post, $context)
 	{
 		// add text fields
-		$form->insert('tags', 'text', 'viewinsidephoto', 'null:null', _t('Sidephotos, max width 220px', $this->name), 'admincontrol_textArea');
-		$form->insert('tags', 'text', 'viewinsidephotosource', 'null:null', _t('The photos\' source', $this->name), 'admincontrol_textArea');
+		$form->insert('tags', 'text', 'viewinsidephoto', 'null:null', _t('Sidephotos, max width 220px', __CLASS__), 'admincontrol_textArea');
+		$form->insert('tags', 'text', 'viewinsidephotosource', 'null:null', _t('The photos\' source', __CLASS__), 'admincontrol_textArea');
 		
 		// add settings container and checkboxes
-		$viewinsidefields = $form->publish_controls->append('fieldset', 'viewinsidefields', _t('TheViewInside', $this->name));
-		$viewinsidefields->append('checkbox', 'extract_images', 'extract_images', _t('Extract images from sourcecode', $this->name));
-		$viewinsidefields->append('checkbox', 'remove_images', 'remove_images', _t('Remove images from sourcecode', $this->name));
-		$viewinsidefields->append('text', 'max_images', 'max_images', _t('Max number of images in sidebar', $this->name));
+		$viewinsidefields = $form->publish_controls->append('fieldset', 'viewinsidefields', _t('TheViewInside', __CLASS__));
+		$viewinsidefields->append('checkbox', 'extract_images', 'extract_images', _t('Extract images from sourcecode', __CLASS__));
+		$viewinsidefields->append('checkbox', 'remove_images', 'remove_images', _t('Remove images from sourcecode', __CLASS__));
+		$viewinsidefields->append('text', 'max_images', 'max_images', _t('Max number of images in sidebar', __CLASS__));
 		
 		// load values and display the fields
 		$form->viewinsidephoto->value = $post->info->viewinsidephoto;
@@ -322,7 +322,7 @@ class TheViewInside extends Theme
 				
 				$out = $albumlinks[$post->tvi_picasaalbum];
 			}
-			catch(exception $e) { $out = _t(vsprintf("No Picasa album available or an error occured. Sometimes reloading the page helps. %s", $e), $this->name); }
+			catch(exception $e) { $out = _t(vsprintf("No Picasa album available or an error occured. Sometimes reloading the page helps. %s", $e), __CLASS__); }
 		}
 		return $out;
 	}
