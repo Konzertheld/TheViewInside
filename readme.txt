@@ -1,3 +1,4 @@
+[README BETA]
 TheViewInside - theme for Habari 0.7 and 0.8
 
 INSTALLATION
