@@ -284,7 +284,6 @@ class TheViewInside extends Theme
 	
 	/**
 	 * Add the options per post
-	 * TODO: Actually perform the check if the per-post setting is set and if not, load the theme setting
 	 */
 	public function action_form_publish($form, $post, $context)
 	{
@@ -324,6 +323,7 @@ class TheViewInside extends Theme
 	
 	function filter_post_tvi_photos($out, $thispost)
 	{
+		// TODO: Use caching or something else so that this function is only executed once even though there are two calls in the post template
 		// TODO: Outsource this into a block. Block options should then be all these points here. Picasa would be an option then, too, which makes this function check $post->picasa_images
 		// Discard values from other plugins (usually, the $out parameter should be empty)
 		$out = array();
@@ -353,28 +353,23 @@ class TheViewInside extends Theme
 			$out = array_merge($out, $slugphotos);
 		}
 		// 2. External image?
-		else if(substr($thispost->info->viewinsidephoto,0,4)=="http")
+		if(substr($thispost->info->viewinsidephoto,0,4)=="http")
 		{
 			// TODO: Multiple images!
 			$out[] = $thispost->info->viewinsidephoto;
 		}
-		// 3. Picasa album? Hack for old way with new picasa silo
-		// TODO: Remove all those, remove the field and instead just check if $post->picasa_images contains something and
-		// if yes, put it into $out
-		else if(substr($thispost->info->viewinsidephoto,0,7)=="picasa:")
+		// 3. Picasa album
+		$picasaimages = $thispost->picasa_images;
+		if(count($picasaimages))
 		{
-			$thispost->info->picasa_album = substr($thispost->info->viewinsidephoto,7);
+			$out = array_merge($out, $thispost->picasa_images);
 		}
 		// 4. Internal image in user directory?
-		else if(is_file(Site::get_dir('user').$thispost->info->viewinsidephoto))
+		if(is_file(Site::get_dir('user').$thispost->info->viewinsidephoto))
 		{
 			// TODO: Multiple images!
 			$out[] = Site::get_url('user').$thispost->info->viewinsidephoto;
 		}
-		
-		// 5. Grab picasa images
-		if(count($thispost->picasa_images))
-			$out = array_merge($out, $thispost->picasa_images);
 		
 		// Apply limit and random order
 		// TODO: Decide when to randomize here
@@ -384,36 +379,6 @@ class TheViewInside extends Theme
 		shuffle($out);
 		$randomizedphotos = array_slice($out, 0, $limit);
 		return $randomizedphotos;
-	}
-	
-	function filter_post_tvi_picasaalbum($out, $post)
-	{
-		if(substr($post->info->viewinsidephoto,0,7)=="picasa:") return substr($post->info->viewinsidephoto,7); else return "";
-	}
-	
-	function filter_post_tvi_picasaalbum_out($out, $post)
-	{
-		$out = "";
-		if(substr($post->info->viewinsidephoto,0,7)=="picasa:")
-		{
-			try
-			{
-				$picasa = new Picasa();
-			
-				// Get these crappy album IDs
-				$xml = $picasa->get_albums();
-				
-				foreach($xml->channel->item as $album)
-				{
-					$albumids[(string)$album->title] = (string)$album->children('http://schemas.google.com/photos/2007')->id;
-					$albumlinks[(string)$album->title] = (string)$album->link;
-				}
-				
-				$out = $albumlinks[$post->tvi_picasaalbum];
-			}
-			catch(exception $e) { $out = _t(vsprintf("No Picasa album available or an error occured. Sometimes reloading the page helps. %s", $e), __CLASS__); }
-		}
-		return $out;
 	}
 	
 	function filter_post_tvi_photosources($out, $post)
