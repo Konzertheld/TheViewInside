@@ -14,9 +14,13 @@ blockquote {
 	background-color: #6c6;
 }
 
-#contentcontainer, #headerbarcontainer, #headerbar, #footercontainer, #footer {
+#contentcontainer, #headerbarcontainer, #footercontainer, #footer {
 	color: #000;
 	background-color: #fcfcfc;
+}
+
+#headerbar {
+	background-color: #fff;
 }
 
 

@@ -7,7 +7,7 @@
 			<div class="postmeta">
 				<h2 class="postmeta-title"><a href="<?php echo $post->permalink; ?>" title="<?php echo $post->title_out; ?>"><?php echo $post->title_out; ?></a></h2>
 				<div class="postmeta-meta">
-					<?php $theme->metaline($post); ?>
+					<?php echo $theme->metaline($post); ?>
 				</div>
 				<?php if (count($post->tags)) : ?>
 				<div class="postmeta-tags">
@@ -23,6 +23,10 @@
 				<div class='postside'>
 					<div class='postside-photos'>
 						<?php echo $post->tvi_photos_out; ?>
+					</div>
+					<div class='postside-photos-footer'>
+						<?php //TODO: Make this optional to protect private albums
+						echo $post->tvi_photos_footer_out; ?>
 					</div>
 				</div>
 				<?php endif; ?>

@@ -45,6 +45,9 @@ dt {
 	font-weight: bold;
 	margin: 8px 0 3px 0;
 }
+img {
+	border: none;
+}
 
 a {
 	text-decoration: none;
@@ -86,9 +89,11 @@ body {
 
 /* HEADER */
 #headerbar {
-	padding: 150px 20px 10px 40px;
+	padding: 120px 20px 10px 65px;
 	float: left;
 	background: url('images/header9.png') top center no-repeat;
+	height: 250px;
+	width: 865px;
 }
 #headerbar h1 {
 	display: none;
@@ -97,13 +102,19 @@ body {
 	font-size: 20px;
 	font-weight: normal;
 }
-#headerbar .first, #headerbar .index_1 {
-	width: 30%;
+#headerbar .first, #headerbar .index_1, #headerbar .last {
+	width: 250px;
 	float: left;
 }
+#headerbar .index_1 {
+	width: 260px;
+	margin-top: 60px;
+	margin-left: 20px;
+}
 #headerbar .last {
-	width: 40%;
-	float: left;
+	width: 280px;
+	margin-top: 35px;
+	margin-left: 50px;
 }
 #headerbar .block div {
 	padding: 0 10px 0 0;
@@ -325,6 +336,17 @@ ul.postlist li {
 }
 span.rating {
 	display:inline;
+}
+
+/* Workaround for Habari autop bug */
+dd, dt {
+	margin-bottom:-16px;
+}
+dd.last {
+	margin-bottom:0;
+}
+#eventreportlist dd {
+	font-size: 90%;
 }
 
 /* OLD EVENT STUFF */

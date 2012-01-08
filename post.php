@@ -4,7 +4,7 @@
 		<?php include("multinavi.php"); ?>
 		<h2 class="postmeta-title"><a href="<?php echo $content->permalink; ?>" title="<?php echo $content->title_out; ?>"><?php echo $content->title_out; ?></a></h2>
 		<div class="postmeta-meta">
-			<?php $theme->metaline($content); ?>
+			<?php echo $theme->metaline($content); ?>
 		</div>
 		<?php if (count($content->tags)) : ?>
 		<div class="postmeta-tags">
@@ -15,9 +15,6 @@
 	<div class="postcontent-container">
 		<div class="postcontent<?php if(count($content->tvi_photos)) echo " withsidecontent"; ?>">
 			<?php echo $content->content_out;?>
-			<?php if (User::identify()->id): ?>
-			<p class="editpostlink"><a href="<?php Site::out_url('admin');?>/publish?id=<?php echo $content->id; ?>" title="<?php printf(_t('Edit %s', $theme->name), $content->title); ?>"><?php _e('Edit post', $theme->name); ?></a></p>
-			<?php endif; ?>
 		</div>
 		<?php if(count($content->tvi_photos)): ?>
 		<div class='postside'>

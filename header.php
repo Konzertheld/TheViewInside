@@ -14,16 +14,16 @@
 	<!--[if IE]>
 		<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/ie.css" media="screen" />
 	<![endif]-->
-	<?php $theme->header(); ?>
+	<?php echo $theme->header(); ?>
 </head>
 <body>
 <div id="wrapper">
 	<div id="headerbarcontainer">
 		<div id="headerbar">
-			<?php $theme->area('headerbar'); ?>
+			<?php echo $theme->area('headerbar'); ?>
 		</div>
 		<a href="/" id="homelogo" title="Startseite"><?php Options::out( 'title' ); ?></a>
 		<div id="socialcontainer">
-			<?php $theme->socialneticons(); ?>
+			<?php echo $theme->socialneticons(); ?>
 		</div>
 	</div>

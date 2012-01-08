@@ -58,10 +58,8 @@ class TheViewInside extends Theme
 	public function action_init_theme()
 	{
 		$this->initialize_options();
-		
-		// Apply Format::autop() to comment content
 		Format::apply('autop', 'comment_content_out');
-		
+		$this->add_template( 'block.tvipages', dirname(__FILE__) . '/block.tvipages.php' );
 		$this->load_text_domain('TheViewInside');
 	}
 	
@@ -288,9 +286,14 @@ class TheViewInside extends Theme
 	public function action_form_publish($form, $post, $context)
 	{
 		// add text fields
-		$form->insert('tags', 'text', 'viewinsidephoto', 'null:null', _t('Sidephotos, max width 220px', __CLASS__), 'admincontrol_textArea');
-		$form->insert('tags', 'text', 'viewinsidephotosource', 'null:null', _t('The photos\' source', __CLASS__), 'admincontrol_textArea');
+		$form->insert('tags', 'text', 'viewinsidephoto', 'null:null', _t('Sidephotos, max width 220px', __CLASS__), 'admincontrol_text');
+		$form->insert('tags', 'text', 'viewinsidephotosource', 'null:null', _t('The photos\' source', __CLASS__), 'admincontrol_text');
 		
+		if ($form->content_type->value == Post::type('page'))
+		{
+			$form->insert('tags', 'text', 'viewinsidedescription', 'null:null', _t('Short description, by default used in the page block', __CLASS__), 'admincontrol_text');
+		}
+				
 		// add settings container and checkboxes
 		$viewinsidefields = $form->publish_controls->append('fieldset', 'viewinsidefields', _t('TheViewInside', __CLASS__));
 		$viewinsidefields->append('checkbox', 'extract_images', 'extract_images', _t('Extract images from sourcecode', __CLASS__));
@@ -299,19 +302,20 @@ class TheViewInside extends Theme
 		
 		// load values and display the fields
 		$form->viewinsidephoto->value = $post->info->viewinsidephoto;
-		$form->viewinsidephoto->template = 'admincontrol_text';
 		$form->viewinsidephotosource->value = $post->info->viewinsidephotosource;
-		$form->viewinsidephotosource->template = 'admincontrol_text';
 		if(isset($post->info->extract_images)) $viewinsidefields->extract_images->value = $post->info->extract_images;
 		$viewinsidefields->extract_images->template = 'tabcontrol_checkbox';
 		if(isset($post->info->remove_images)) $viewinsidefields->remove_images->value = $post->info->remove_images;
 		$viewinsidefields->remove_images->template = 'tabcontrol_checkbox';
 		$viewinsidefields->max_images->value = $post->info->max_images;
 		$viewinsidefields->max_images->template = 'tabcontrol_text';
-		
+		if ($form->content_type->value == Post::type('page'))
+		{
+			$form->viewinsidedescription->value = $post->info->viewinsidedescription;
+		}
 	}
 	
-	// Save the photo fields
+	// Save the fields
 	public function action_publish_post( $post, $form )
 	{
 		$post->info->viewinsidephoto = $form->viewinsidephoto->value;
@@ -319,6 +323,10 @@ class TheViewInside extends Theme
 		$post->info->extract_images = $form->extract_images->value;
 		$post->info->remove_images = $form->remove_images->value;
 		$post->info->max_images = $form->max_images->value;
+		if ($form->content_type->value == Post::type('page'))
+		{
+			$post->info->viewinsidedescription = $form->viewinsidedescription->value;
+		}
 	}
 	
 	function filter_post_tvi_photos($out, $thispost)
@@ -392,12 +400,46 @@ class TheViewInside extends Theme
 	{
 		$this->assign('content', $post);
 		return $this->fetch("sidephotos");
+	}	
+	function filter_post_tvi_photos_footer_out($out, $post)
+	{
+		$this->assign('content', $post);
+		return $this->fetch("sidephotos_footer");
 	}
 	
 	function filter_post_isguestpost($out, $post)
 	{
 		$opts = Options::get_group( __CLASS__ );
 		return !in_array($post->author->id, $opts['default_authors']);
+	}
+	
+	// Block section
+	
+	public function filter_block_list( $blocklist )
+	{
+		$blocklist[ 'tvipages' ] = _t( 'TheViewInside pages' );
+		return $blocklist;
+	}
+	
+	public function action_block_form_tvipages( $form, $block )
+	{
+		$pages = Posts::get(array('content_type' => Post::type('page'), 'status' => Post::status('published')));
+		foreach($pages as $page)
+		{
+			$pageoptions[$page->id] = $page->title;
+		}
+		$form->append( 'select', 'pages', __CLASS__ . '__pageblock_pages', _t( 'Pages to display:', __CLASS__ ) );
+		$form->pages->size = (count($pages) > 6) ? 6 : count($pages);
+		$form->pages->multiple = true;
+		$form->pages->options = $pageoptions;
+	}
+	
+	public function action_block_content_tvipages( $block )
+	{
+		$pages = Options::get(__CLASS__ . '__pageblock_pages');
+		$pageposts = Posts::get(array('id' => $pages));
+		//$block->stuff = $pages;
+		$block->pages = $pageposts;
 	}
 }
 ?>
