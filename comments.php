@@ -23,7 +23,7 @@ else
 		{
 			?>
 			<div id="comment-<?php echo $comment->id; ?>" class="comment<?php if($evenoddcomment) echo ' even'; else echo ' odd';?>">
-				<?php $theme->comment_gravatar($comment); ?>
+				<?php echo $theme->comment_gravatar($comment); ?>
 				<div class="comment-main">
 					<div class="comment-meta">
 						<?php printf(_t(' %s said at %s:', $theme->name),
