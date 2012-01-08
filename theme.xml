@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <pluggable type="theme">
 	<name>TheViewInside</name>
+	<class>TheViewInside</class>
 	<license url="http://www.apache.org/licenses/LICENSE-2.0.html">Apache Software License 2.0</license>
 	<author>Christian Gredig</author>
 	<version>0.2</version>
