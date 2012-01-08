@@ -18,10 +18,6 @@ class TheViewInside extends Theme
 		
 	var $image_extensions = array('.png', '.jpg');
 	
-	var $excludedclasses = array("rating");
-	//$excludedclasses[] = "blockintextlinks";
-	//$excludedclasses[] = "blockintextrechts";
-	
 	/**
 	 * Set the default options if necessary.
 	 * Avoids errors on first theme activation and on theme upgrade.
@@ -229,10 +225,10 @@ class TheViewInside extends Theme
 				// Stop now if classes cause exclusion of this image, otherwise add the classes to the array
 				$classesarray = explode(' ', $imagearray["classstring"]);
 				
-				foreach($this->excludedclasses as $excluded)
+				/*foreach($this->excludedclasses as $excluded)
 				{
 					if(in_array($excluded, $classesarray)) $imagearray = null;
-				}
+				}*/
 				if($imagearray == null) continue;
 				else $imagearray["classes"] = $classesarray;
 			}
@@ -303,10 +299,10 @@ class TheViewInside extends Theme
 		// load values and display the fields
 		$form->viewinsidephoto->value = $post->info->viewinsidephoto;
 		$form->viewinsidephotosource->value = $post->info->viewinsidephotosource;
-		if(isset($post->info->extract_images)) $viewinsidefields->extract_images->value = $post->info->extract_images;
-		$viewinsidefields->extract_images->template = 'tabcontrol_checkbox';
-		if(isset($post->info->remove_images)) $viewinsidefields->remove_images->value = $post->info->remove_images;
-		$viewinsidefields->remove_images->template = 'tabcontrol_checkbox';
+		//if(isset($post->info->extract_images)) $viewinsidefields->extract_images->value = $post->info->extract_images;
+		//$viewinsidefields->extract_images->template = 'tabcontrol_checkbox';
+		//if(isset($post->info->remove_images)) $viewinsidefields->remove_images->value = $post->info->remove_images;
+		//$viewinsidefields->remove_images->template = 'tabcontrol_checkbox';
 		$viewinsidefields->max_images->value = $post->info->max_images;
 		$viewinsidefields->max_images->template = 'tabcontrol_text';
 		if ($form->content_type->value == Post::type('page'))
@@ -320,8 +316,8 @@ class TheViewInside extends Theme
 	{
 		$post->info->viewinsidephoto = $form->viewinsidephoto->value;
 		$post->info->viewinsidephotosource = $form->viewinsidephotosource->value;
-		$post->info->extract_images = $form->extract_images->value;
-		$post->info->remove_images = $form->remove_images->value;
+		//$post->info->extract_images = $form->extract_images->value;
+		//$post->info->remove_images = $form->remove_images->value;
 		$post->info->max_images = $form->max_images->value;
 		if ($form->content_type->value == Post::type('page'))
 		{
