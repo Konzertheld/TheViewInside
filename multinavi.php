@@ -1,3 +1,4 @@
+<?php if(count($content->tags)): ?>
 <p class="postnavi">
 <a href="<?php echo $content->permalink; ?>#comments">
 <img src="<?php Site::out_url('theme'); ?>/images/icons/comments.png" alt="<?php _e('Jump to comments', $theme->name); ?>" title="<?php _e('Jump to comments', $theme->name); ?>" class="paginationicon">
@@ -13,3 +14,4 @@
 </a>
 <?php echo $theme->jumplist($content, true); ?>
 </p>
+<?php endif; ?>
