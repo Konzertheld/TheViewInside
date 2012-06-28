@@ -178,13 +178,22 @@ body {
 	min-height:300px;
 }
 
+.post.notags  {
+	min-height: 90px;
+}
+
+.post.blogroll {
+	min-height: 100px;
+}
+
 .postmeta-title {
 	font-weight:normal;
 	font-size:36px;
-}
-.postmeta-title {	
 	float: left;
 	max-width: 85%;
+}
+.notags .postmeta-title {
+	max-width: 100%;
 }
 .postmeta-meta {
 	clear: both;
@@ -339,9 +348,6 @@ span.rating {
 }
 
 /* Workaround for Habari autop bug */
-dd, dt {
-	margin-bottom:-16px;
-}
 dd.last {
 	margin-bottom:0;
 }
@@ -385,4 +391,10 @@ dd.last {
 }
 .eventlist ul li:hover ul {
 	display:block;
+}
+
+/* USER STUFF THAT SHOULD MAYBE GO ELSEWHERE */
+#eventreportlist em {
+	color: #c66;
+	font-style: normal;
 }
