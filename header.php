@@ -8,7 +8,7 @@
 	<link rel="alternate" type="application/atom+xml" title="Atom 1.0" href="<?php $theme->feed_alternate(); ?>" />
 	<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/style.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/color.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/debug.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/user.css" media="screen" />
 	<?php require_once('socialcss.php'); ?>
 	<?php if(($multipleview && $gpmultiple) || (!$multipleview && $gpsingle)): ?><script type="text/javascript" src="https://apis.google.com/js/plusone.js">{parsetags: 'explicit'}</script><?php endif; ?>
 	<!--[if IE]>
