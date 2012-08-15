@@ -1,12 +1,11 @@
 /* MAIN STYLE SHEET */
-/* PUT LAYOUT HERE AND COLORS IN color.css */
+/* PUT LAYOUT HERE, COLORS IN color.css AND SITE-SPECIFIC STUFF IN user.css */
 
 /*	NOTES
 
 	CSS 3
 	* border-radius used for the page selector
 	* word-wrap used on some block elements (global stuff)
-	* homelogo rotation
 	*/
 	
 /* FONT DECLARATIONS */
@@ -132,33 +131,6 @@ body {
 	display: block;
 	width: 48px;
 	height: 48px;
-}
-/* #homelogo {
-	background:transparent url('images/konzertheld-vertikal.png') no-repeat;
-	width: 278px;
-	height: 39px;
-	display: block;
-	position: absolute;
-	top: 280px;
-	left: -41px;
-} */
-#homelogo {
-	-webkit-transform: rotate(270deg);
-	-moz-transform: rotate(270deg);
-	-ms-transform: rotate(270deg);
-	-o-transform: rotate(270deg);
-	transform: rotate(270deg);
-	width: 278px;
-	height: 39px;
-	display: block;
-	position: absolute;
-	top:136px;
-	left: -161px;
-	font-size:48px;
-	font-family: KiwiAmbient;
-}
-#homelogo:hover {
-	text-decoration:none;
 }
 
 /* POSTS AND SIDEPHOTOS */
@@ -332,69 +304,4 @@ ul.postlist li {
 	padding-top: 10px;
 	border-top-width: 1px;
 	border-top-style: solid;
-}
-
-/* MIXED STUFF */
-.rating img, img.rating
-{
-	background:none;
-	border:none;
-	height:14px;
-	padding:0;
-	display:inline;
-}
-span.rating {
-	display:inline;
-}
-
-/* Workaround for Habari autop bug */
-dd.last {
-	margin-bottom:0;
-}
-#eventreportlist dd {
-	font-size: 90%;
-}
-
-/* OLD EVENT STUFF */
-.eventlist ul li {
-	padding-top:3px;
-	padding-bottom:3px;
-	height:22px;
-	background-position:5px left;
-}
-.eventlist ul li h4 {
-	margin:0;
-	font-weight:normal;
-}
-.eventlist ul li h4 {
-	margin-bottom:3px;
-	font-size:13px;
-	display:inline;
-}
-.eventlist ul li ul li {
-	background-image:none;
-	margin-left:8px;
-	margin-bottom:14px;
-	padding:0;
-	display:normal;
-}
-.eventlist ul li ul {
-	display:none;
-	position:relative;
-	top:-22px;
-	left:0;
-	margin:-4px 0 0 300px;
-	padding:3px;
-}
-.eventlist ul li:hover, .eventlist ul li:hover ul {
-	/* background-color:#393939; */
-}
-.eventlist ul li:hover ul {
-	display:block;
-}
-
-/* USER STUFF THAT SHOULD MAYBE GO ELSEWHERE */
-#eventreportlist em {
-	color: #c66;
-	font-style: normal;
 }
