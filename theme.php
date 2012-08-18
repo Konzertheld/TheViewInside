@@ -181,9 +181,10 @@ class TheViewInside extends Theme
 		if($this->multipleview)
 		{
 			$morepos = stripos($content, "<!--more-->");
-			if(!$morepos) $morepos = stripos($content, "<!-- more -->");
+			if(!$morepos)
+				$morepos = stripos($content, "<!-- more -->");
 			if($morepos != false)
-				$newcontent = substr($content, 0, $morepos)."<p><a class='readmorelink' href='".$post->permalink."' title='".sprintf(_t("Continue reading %s", __CLASS__),$post->title)."'>".sprintf(_t("Continue reading %s", __CLASS__),$post->title)."</a></p>";
+				$newcontent = substr($content, 0, $morepos) . "<p><a class='readmorelink' href='" . $post->permalink . "'>". _t("Continue reading %s", array($post->title), __CLASS__) ."</a></p>";
 		}
 		
 		// Remove images
