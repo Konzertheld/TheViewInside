@@ -1,8 +1,9 @@
 <?php
 /**
  * TheViewInside Habari Theme
- * by Konzertheld
+ * created by Konzertheld
  * http://konzertheld.de
+ * made for the Habari community
  */
 
 class TheViewInside extends Theme
