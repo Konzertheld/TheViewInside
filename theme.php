@@ -1,8 +1,9 @@
 <?php
 /**
  * TheViewInside Habari Theme
- * by Konzertheld
+ * created by Konzertheld
  * http://konzertheld.de
+ * made for the Habari community
  */
 
 class TheViewInside extends Theme
@@ -202,44 +203,23 @@ class TheViewInside extends Theme
 	// Use content_out when calling to only get the images from the excerpt
 	public function post_get_images($content)
 	{
-		// TODO: Get surrounding links! (optional)
-		preg_match_all("/<img[^>]+>/u", $content, $matches);
+		preg_match_all("@<a [^>]*?rel=[^>]*>(<img[^>]+>)</a>@u", $content, $matches);
 
 		// Create an array containing the image's source code, its path and all its classes
 		$imagelist = array();
 		
 		foreach($matches[0] as $match)
 		{
-			$imagearray = array();
-			$imagearray["original"] = $match; // save the original html
+			$image = array();
+			$image["original"] = $match; // save the original html
 			
 			// Get the image's source (extract the src part)
 			$srcoffset = stripos($match, "src=\"");
-			$imagearray["source"] = substr($match, $srcoffset+5, stripos($match, "\"", $srcoffset+5) - $srcoffset - 5);
+			$image["source"] = substr($match, $srcoffset+5, stripos($match, "\"", $srcoffset+5) - $srcoffset - 5);
 			
-			// Get the class(es), if any (extract the class attribute)
-			$classoffset = stripos($match, "class=\"");
-			if($classoffset != false)
-			{
-				$imagearray["classstring"] = substr($match, $classoffset+7, stripos($match, "\"", $classoffset+7) - $classoffset-7);
-							
-				// Stop now if classes cause exclusion of this image, otherwise add the classes to the array
-				$classesarray = explode(' ', $imagearray["classstring"]);
-				
-				/*foreach($this->excludedclasses as $excluded)
-				{
-					if(in_array($excluded, $classesarray)) $imagearray = null;
-				}*/
-				if($imagearray == null) continue;
-				else $imagearray["classes"] = $classesarray;
-			}
-			
-			// Finally, add the html without classes. If some classes are needed, they can be added again later.
-			$imagearray["out"] = str_replace("class=\"$classes\"", "", $match);
-			
-			$imagelist[] = $imagearray;
+			$imagelist[] = $image;
 		}
-		
+		//Utils::debug($matches);
 		return $imagelist;
 	}
 	
@@ -300,10 +280,10 @@ class TheViewInside extends Theme
 		// load values and display the fields
 		$form->viewinsidephoto->value = $post->info->viewinsidephoto;
 		$form->viewinsidephotosource->value = $post->info->viewinsidephotosource;
-		//if(isset($post->info->extract_images)) $viewinsidefields->extract_images->value = $post->info->extract_images;
-		//$viewinsidefields->extract_images->template = 'tabcontrol_checkbox';
-		//if(isset($post->info->remove_images)) $viewinsidefields->remove_images->value = $post->info->remove_images;
-		//$viewinsidefields->remove_images->template = 'tabcontrol_checkbox';
+		if(isset($post->info->extract_images)) $viewinsidefields->extract_images->value = $post->info->extract_images;
+		$viewinsidefields->extract_images->template = 'tabcontrol_checkbox';
+		if(isset($post->info->remove_images)) $viewinsidefields->remove_images->value = $post->info->remove_images;
+		$viewinsidefields->remove_images->template = 'tabcontrol_checkbox';
 		$viewinsidefields->max_images->value = $post->info->max_images;
 		$viewinsidefields->max_images->template = 'tabcontrol_text';
 		if ($form->content_type->value == Post::type('page'))
@@ -317,8 +297,8 @@ class TheViewInside extends Theme
 	{
 		$post->info->viewinsidephoto = $form->viewinsidephoto->value;
 		$post->info->viewinsidephotosource = $form->viewinsidephotosource->value;
-		//$post->info->extract_images = $form->extract_images->value;
-		//$post->info->remove_images = $form->remove_images->value;
+		$post->info->extract_images = $form->extract_images->value;
+		$post->info->remove_images = $form->remove_images->value;
 		$post->info->max_images = $form->max_images->value;
 		if ($form->content_type->value == Post::type('page'))
 		{
@@ -329,7 +309,7 @@ class TheViewInside extends Theme
 	function filter_post_tvi_photos($out, $thispost)
 	{
 		// TODO: Use caching or something else so that this function is only executed once even though there are two calls in the post template
-		// TODO: Outsource this into a block. Block options should then be all these points here. Picasa would be an option then, too, which makes this function check $post->picasa_images
+		
 		// Discard values from other plugins (usually, the $out parameter should be empty)
 		$out = array();
 		
@@ -339,48 +319,18 @@ class TheViewInside extends Theme
 			$thispostimages = $this->post_get_images($thispost->content);
 			if(count($thispostimages))
 			{
-				$out = array_merge($out, $thispostimages);
+				foreach($thispostimages as $image)
+				{
+					$out[] = $image["original"];
+				}
 			}
 		}
-		
-		// 1. No image?
-		if(empty($thispost->info->viewinsidephoto))
-		{
-			// Try to get one via slug from the banner folder
-			$slugphotos = array();
-			// TODO: multiple numbered Slugphotos
-			foreach($this->image_extensions as $ext)
-			{
-				$subpath = "/files/banner/" . $thispost->slug . $ext;
-				if(is_file(Site::get_dir('user').$subpath))
-					$slugphotos[] = Site::get_url('user').$subpath;
-			}
-			$out = array_merge($out, $slugphotos);
-		}
-		// 2. External image?
-		if(substr($thispost->info->viewinsidephoto,0,4)=="http")
-		{
-			// TODO: Multiple images!
-			$out[] = $thispost->info->viewinsidephoto;
-		}
-		// 3. Picasa album
-		$picasaimages = $thispost->picasa_images;
-		if(count($picasaimages))
-		{
-			$out = array_merge($out, $thispost->picasa_images);
-		}
-		// 4. Internal image in user directory?
-		if(is_file(Site::get_dir('user').$thispost->info->viewinsidephoto))
-		{
-			// TODO: Multiple images!
-			$out[] = Site::get_url('user').$thispost->info->viewinsidephoto;
-		}
-		
+
 		// Apply limit and random order
 		// TODO: Decide when to randomize here
 		if(isset($thispost->info->max_images) && !empty($thispost->info->max_images))
 			$limit = $thispost->info->max_images;
-		else $limit = 1; //TODO: Calculate a limit
+		else $limit = 2; //TODO: Calculate a limit
 		shuffle($out);
 		$randomizedphotos = array_slice($out, 0, $limit);
 		return $randomizedphotos;
