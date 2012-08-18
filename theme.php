@@ -219,7 +219,7 @@ class TheViewInside extends Theme
 			
 			$imagelist[] = $image;
 		}
-		//Utils::debug($matches);
+		
 		return $imagelist;
 	}
 	
@@ -292,7 +292,10 @@ class TheViewInside extends Theme
 		}
 	}
 	
-	// Save the fields
+	/**
+	 * Save the fields from the publish form
+	 * Also extract images if requested for later
+	 */
 	public function action_publish_post( $post, $form )
 	{
 		$post->info->viewinsidephoto = $form->viewinsidephoto->value;
@@ -304,43 +307,38 @@ class TheViewInside extends Theme
 		{
 			$post->info->viewinsidedescription = $form->viewinsidedescription->value;
 		}
-	}
-	
-	function filter_post_tvi_photos($out, $thispost)
-	{
-		// TODO: Use caching or something else so that this function is only executed once even though there are two calls in the post template
 		
-		// Discard values from other plugins (usually, the $out parameter should be empty)
-		$out = array();
-		
-		// 0. Images from content?
-		if($thispost->info->extract_images)
+		// Extract images for the post's sidebar if the user requested it
+		if($post->info->extract_images)
 		{
-			$thispostimages = $this->post_get_images($thispost->content);
-			if(count($thispostimages))
+			$images = $this->post_get_images($post->content);
+			if(count($images))
 			{
-				foreach($thispostimages as $image)
+				foreach($images as $image)
 				{
-					$out[] = $image["original"];
+					$imagelist[] = $image["original"];
 				}
 			}
 		}
-
-		// Apply limit and random order
-		// TODO: Decide when to randomize here
-		if(isset($thispost->info->max_images) && !empty($thispost->info->max_images))
-			$limit = $thispost->info->max_images;
-		else $limit = 2; //TODO: Calculate a limit
-		shuffle($out);
-		$randomizedphotos = array_slice($out, 0, $limit);
-		return $randomizedphotos;
+		$post->info->tvi_imagelist = $imagelist;
 	}
 	
-	function filter_post_tvi_photosources($out, $post)
+	/**
+	 * Randomize extracted images and return them, taking care of the limit
+	 */
+	function filter_post_tvi_photos($out, $post)
 	{
-		if(!empty($post->info->viewinsidephotosource))
-			return explode(';', $post->info->viewinsidephotosource);
-		else return null;
+		// Discard values from other plugins (which should not exist)
+		$out = $post->info->tvi_imagelist;
+		
+		// Apply limit and random order
+		// TODO: Decide when to randomize here
+		if(isset($post->info->max_images) && !empty($post->info->max_images))
+			$limit = $post->info->max_images;
+		else
+			$limit = 2; //TODO: Calculate a limit
+		shuffle($out);
+		return array_slice($out, 0, $limit);
 	}
 	
 	function filter_post_tvi_photos_out($out, $post)
@@ -348,11 +346,6 @@ class TheViewInside extends Theme
 		$this->assign('content', $post);
 		return $this->fetch("sidephotos");
 	}	
-	function filter_post_tvi_photos_footer_out($out, $post)
-	{
-		$this->assign('content', $post);
-		return $this->fetch("sidephotos_footer");
-	}
 	
 	function filter_post_isguestpost($out, $post)
 	{
