@@ -298,6 +298,8 @@ class TheViewInside extends Theme
 	 */
 	public function action_publish_post( $post, $form )
 	{
+		$imagelist = array();
+		
 		$post->info->viewinsidephoto = $form->viewinsidephoto->value;
 		$post->info->viewinsidephotosource = $form->viewinsidephotosource->value;
 		$post->info->extract_images = $form->extract_images->value;
