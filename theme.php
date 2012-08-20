@@ -263,9 +263,6 @@ class TheViewInside extends Theme
 	public function action_form_publish($form, $post, $context)
 	{
 		// add text fields
-		$form->insert('tags', 'text', 'viewinsidephoto', 'null:null', _t('Sidephotos, max width 220px', __CLASS__), 'admincontrol_text');
-		$form->insert('tags', 'text', 'viewinsidephotosource', 'null:null', _t('The photos\' source', __CLASS__), 'admincontrol_text');
-		
 		if ($form->content_type->value == Post::type('page'))
 		{
 			$form->insert('tags', 'text', 'viewinsidedescription', 'null:null', _t('Short description, by default used in the page block', __CLASS__), 'admincontrol_text');
@@ -278,8 +275,6 @@ class TheViewInside extends Theme
 		$viewinsidefields->append('text', 'max_images', 'max_images', _t('Max number of images in sidebar', __CLASS__));
 		
 		// load values and display the fields
-		$form->viewinsidephoto->value = $post->info->viewinsidephoto;
-		$form->viewinsidephotosource->value = $post->info->viewinsidephotosource;
 		if(isset($post->info->extract_images)) $viewinsidefields->extract_images->value = $post->info->extract_images;
 		$viewinsidefields->extract_images->template = 'tabcontrol_checkbox';
 		if(isset($post->info->remove_images)) $viewinsidefields->remove_images->value = $post->info->remove_images;
@@ -300,8 +295,6 @@ class TheViewInside extends Theme
 	{
 		$imagelist = array();
 		
-		$post->info->viewinsidephoto = $form->viewinsidephoto->value;
-		$post->info->viewinsidephotosource = $form->viewinsidephotosource->value;
 		$post->info->extract_images = $form->extract_images->value;
 		$post->info->remove_images = $form->remove_images->value;
 		$post->info->max_images = $form->max_images->value;
