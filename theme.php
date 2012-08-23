@@ -292,9 +292,7 @@ class TheViewInside extends Theme
 	 * Also extract images if requested for later
 	 */
 	public function action_publish_post( $post, $form )
-	{
-		$imagelist = array();
-		
+	{		
 		$post->info->extract_images = $form->extract_images->value;
 		$post->info->remove_images = $form->remove_images->value;
 		$post->info->max_images = $form->max_images->value;
@@ -306,6 +304,8 @@ class TheViewInside extends Theme
 		// Extract images for the post's sidebar if the user requested it
 		if($post->info->extract_images)
 		{
+			$imagelist = array();
+			
 			$images = $this->post_get_images($post->content);
 			if(count($images))
 			{
@@ -314,8 +314,9 @@ class TheViewInside extends Theme
 					$imagelist[] = $image["original"];
 				}
 			}
+			
+			$post->info->tvi_imagelist = $imagelist;
 		}
-		$post->info->tvi_imagelist = $imagelist;
 	}
 	
 	/**
