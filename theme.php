@@ -326,6 +326,7 @@ class TheViewInside extends Theme
 	{
 		// Discard values from other plugins (which should not exist)
 		$out = $post->info->tvi_imagelist;
+		if(!count($out)) return array();
 		
 		// Apply limit and random order
 		// TODO: Decide when to randomize here
