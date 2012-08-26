@@ -274,16 +274,25 @@ class TheViewInside extends Theme
 		$viewinsidefields->append('checkbox', 'remove_images', 'remove_images', _t('Remove images from sourcecode', __CLASS__));
 		$viewinsidefields->append('text', 'max_images', 'max_images', _t('Max number of images in sidebar', __CLASS__));
 		
-		// load values and display the fields
-		if(isset($post->info->extract_images)) $viewinsidefields->extract_images->value = $post->info->extract_images;
+		// load values and display the fields and if necessary fill them with initial values
+		if(isset($post->info->extract_images))
+			$viewinsidefields->extract_images->value = $post->info->extract_images;
+		else
+			$viewinsidefields->extract_images->value = false;
 		$viewinsidefields->extract_images->template = 'tabcontrol_checkbox';
-		if(isset($post->info->remove_images)) $viewinsidefields->remove_images->value = $post->info->remove_images;
+		if(isset($post->info->remove_images))
+			$viewinsidefields->remove_images->value = $post->info->remove_images;
+		else
+			$viewinsidefields->remove_images->value = false;
 		$viewinsidefields->remove_images->template = 'tabcontrol_checkbox';
 		$viewinsidefields->max_images->value = $post->info->max_images;
 		$viewinsidefields->max_images->template = 'tabcontrol_text';
 		if ($form->content_type->value == Post::type('page'))
 		{
-			$form->viewinsidedescription->value = $post->info->viewinsidedescription;
+			if(isset($post->info->viewinsidedescription))
+				$form->viewinsidedescription->value = $post->info->viewinsidedescription;
+			else
+				$form->viewinsidedescription->value = "";
 		}
 	}
 	
