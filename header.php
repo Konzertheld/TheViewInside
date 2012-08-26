@@ -22,7 +22,7 @@
 		<div id="headerbar">
 			<?php echo $theme->area('headerbar'); ?>
 		</div>
-		<h1><a href="/" id="homelogo" title="Startseite"><?php Options::out( 'title' ); ?></a></h1>
+		<h1><a href="<?php Site::out_url('habari'); ?>" id="homelogo" title="<?php _t('Home'); ?>"><?php Options::out( 'title' ); ?></a></h1>
 		<div id="socialcontainer">
 			<?php echo $theme->socialneticons(); ?>
 		</div>
