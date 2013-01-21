@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<pluggable type="theme">
+<pluggable type="theme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://schemas.habariproject.org/pluggable/0.8">
 	<name>TheViewInside</name>
-	<class>TheViewInside</class>
 	<license url="http://www.apache.org/licenses/LICENSE-2.0.html">Apache Software License 2.0</license>
-	<author>Christian Gredig</author>
+	<author url="http://konzertheld.de">Christian Gredig</author>
+	<author url="http://habariproject.org/">The Habari Community</author>
 	<version>0.2</version>
-	<description>Blblblblbl. :P</description>
+	<description>Clean theme with many small configurable things. Several possibilities of adding images to posts. Integrates with galleries.</description>
 	<template_engine>rawphpengine</template_engine>
 	<areas>
 		<area name="headerbar">
@@ -18,4 +18,11 @@
 			<description><![CDATA[Per-post sidephotos]]></description>
 		</area>
 	</areas>
+	<recommends>
+		<feature url="http://wiki.habariproject.org/en/feature/gallery">gallery</feature>
+	</recommends>
+	<provides>
+		<feature url="http://wiki.habariproject.org/en/feature/area">area</feature>
+		<feature url="http://wiki.habariproject.org/en/feature/block">block</feature>
+	</provides>
 </pluggable>
