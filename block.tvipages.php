@@ -8,7 +8,7 @@
 				<h3><a href="<?php echo $page->permalink; ?>" title="<?php echo $page->title; ?>"><?php echo $page->title_out; ?></a></h3>
 				<p><?php $description = $page->info->viewinsidedescription;
 				if(empty($description))
-					_e("Information page, last updated %s", array($theme->post->updated->format()), $theme->name);
+					_e("Information page, last updated %s", array($page->updated->format()), $theme->name);
 				else
 					echo $description;
 				?></p>
