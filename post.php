@@ -1,4 +1,4 @@
-<?php if ( ! defined('HABARI_PATH' ) ) { die( _t('Please do not load this page directly.') ); } ?>
+<?php namespace Habari; if ( ! defined('HABARI_PATH' ) ) { die( _t('Please do not load this page directly.') ); } ?>
 <div class="multiple post <?php echo Post::type_name($content->content_type[0]); ?>
 <?php if($theme->evenodd) echo ' even'; else echo ' odd';?>
 <?php if(!count($content->tags)) echo ' notags';?>">

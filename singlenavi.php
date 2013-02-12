@@ -1,4 +1,4 @@
-<?php
+<?php namespace Habari;
 	// Create queries for ascending and descending posts
 	// Content Types from options
 	$query = "";

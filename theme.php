@@ -1,4 +1,5 @@
 <?php
+namespace Habari;
 /**
  * TheViewInside Habari Theme
  * created by Konzertheld

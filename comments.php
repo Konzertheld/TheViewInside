@@ -1,4 +1,4 @@
-<?php if ( ! defined('HABARI_PATH' ) ) { die( _t('Please do not load this page directly.') ); } ?>
+<?php namespace Habari; if ( ! defined('HABARI_PATH' ) ) { die( _t('Please do not load this page directly.') ); } ?>
 <?php
 $usercanmoderate = (User::identify()->id && (User::identify()->can("manage_all_comments") || (User::identify()->can("manage_own_post_comments") && $post->id == User::identify()->id)));
 if($usercanmoderate)
