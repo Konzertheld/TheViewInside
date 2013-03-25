@@ -204,6 +204,7 @@ class TheViewInside extends Theme
 	// Use content_out when calling to only get the images from the excerpt
 	public function post_get_images($content)
 	{
+		//@TODO: Cache this. Also, it's called in too many places and images are stored as postinfo. wtf?
 		preg_match_all("@<a [^>]*?rel=[^>]*>(<img[^>]+>)</a>@u", $content, $matches);
 
 		// Create an array containing the image's source code, its path and all its classes
@@ -326,6 +327,10 @@ class TheViewInside extends Theme
 			}
 			
 			$post->info->tvi_imagelist = $imagelist;
+		}
+		else
+		{
+			unset($post->info->tvi_imagelist);
 		}
 	}
 	
