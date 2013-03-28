@@ -111,8 +111,6 @@ class TheViewInside extends Theme
 		
 		$ui->social->append('checkbox', 'social_postfeed', __CLASS__ . '__social_postfeed', _t('Show post feed in social area', __CLASS__));
 		$ui->social->append('checkbox', 'social_commentsfeed', __CLASS__ . '__social_commentsfeed', _t('Show comments feed in social area', __CLASS__));
-		$ui->social->append('checkbox', 'gpmulti', __CLASS__ . '__gpmulti', _t('Show Google +1 Button on multiple views:', __CLASS__));
-		$ui->social->append('checkbox', 'gpsingle', __CLASS__ . '__gpsingle', _t('Show Google +1 Button on single views:', __CLASS__));
 		
 		// Save
 		$ui->append( 'submit', 'save', _t( 'Save', __CLASS__ ) );

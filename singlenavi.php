@@ -33,7 +33,6 @@
 	<img src="<?php Site::out_url('theme'); ?>/images/icons/page_edit.png" alt="<?php _e('Edit post', $theme->name); ?>" title="<?php _e('Edit post', $theme->name); ?>" class="paginationicon">
 	</a>
 <?php endif;?>
-<?php if($gpsingle): ?><g:plusone size="small" count="false" href="<?php echo $post->permalink; ?>"></g:plusone><?php endif; ?>
 <a href="<?php echo $post->permalink;?>/atom/comments">
 <img src="<?php Site::out_url('theme'); ?>/images/icons/feed.png" alt="<?php _e('Subscribe to this post\'s comments', $theme->name); ?>" title="<?php _e('Subscribe to this post\'s comments', $theme->name); ?>" class="paginationicon">
 </a>
