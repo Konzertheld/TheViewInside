@@ -9,10 +9,6 @@
 	*/
 	
 /* FONT DECLARATIONS */
-
-/* Global font by http://www.josbuivenga.demon.nl/delicious.html */
-@font-face { font-family: Delicious; src: url('fonts/Delicious-Roman.otf'); }
-@font-face { font-family: Delicious; font-weight: bold; src: url('fonts/Delicious-Bold.otf'); }
 /* Headings font by http://www.fontspace.com/kiwi-media */
 @font-face { font-family: KiwiAmbient; src: url('fonts/AMBIENT.TTF'); }
 
