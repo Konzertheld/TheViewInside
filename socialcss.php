@@ -1,4 +1,4 @@
-<?php namespace Habari; if(!defined('HABARI_PATH')) { die('Please do not load this page directly.'); } ?>
+<?php if(!defined('HABARI_PATH')) { die('Please do not load this page directly.'); } ?>
 <style type="text/css">
 <?php
 $opts = Options::get_group(get_class($theme));
