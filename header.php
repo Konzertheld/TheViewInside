@@ -9,7 +9,6 @@
 	<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/color.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/user.css" media="screen" />
 	<?php require_once('socialcss.php'); ?>
-	<?php if(($multipleview && $gpmultiple) || (!$multipleview && $gpsingle)): ?><script type="text/javascript" src="https://apis.google.com/js/plusone.js">{parsetags: 'explicit'}</script><?php endif; ?>
 	<!--[if IE]>
 		<link rel="stylesheet" type="text/css" href="<?php Site::out_url( 'theme' ); ?>/ie.css" media="screen" />
 	<![endif]-->
