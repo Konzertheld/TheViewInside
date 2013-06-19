@@ -272,6 +272,7 @@ class TheViewInside extends Theme
 		$viewinsidefields->append('checkbox', 'extract_images', 'extract_images', _t('Extract images from sourcecode', __CLASS__));
 		$viewinsidefields->append('checkbox', 'remove_images', 'remove_images', _t('Remove images from sourcecode', __CLASS__));
 		$viewinsidefields->append('text', 'max_images', 'max_images', _t('Max number of images in sidebar', __CLASS__));
+		$viewinsidefields->append('text', 'tvi_photosource', 'tvi_photosource', _t('Photo(s) to use for the view inside', __CLASS__));
 		
 		// load values and display the fields and if necessary fill them with initial values
 		if(isset($post->info->extract_images))
@@ -286,6 +287,8 @@ class TheViewInside extends Theme
 		$viewinsidefields->remove_images->template = 'tabcontrol_checkbox';
 		$viewinsidefields->max_images->value = $post->info->max_images;
 		$viewinsidefields->max_images->template = 'tabcontrol_text';
+		$viewinsidefields->tvi_photosource->value = $post->info->tvi_photosource;
+		$viewinsidefields->tvi_photosource->template = 'tabcontrol_text';
 		if ($form->content_type->value == Post::type('page'))
 		{
 			if(isset($post->info->viewinsidedescription))
@@ -300,7 +303,8 @@ class TheViewInside extends Theme
 	 * Also extract images if requested for later
 	 */
 	public function action_publish_post( $post, $form )
-	{		
+	{
+		$post->info->tvi_photosource = $form->tvi_photosource->value;
 		$post->info->extract_images = $form->extract_images->value;
 		$post->info->remove_images = $form->remove_images->value;
 		$post->info->max_images = $form->max_images->value;
@@ -332,14 +336,36 @@ class TheViewInside extends Theme
 	}
 	
 	/**
+	 * Add a link to all the silos to use the current path for the sidephotos
+	 */
+	public function filter_media_controls($controls, $silo, $rpath)
+	{
+		// We can only get the path from an asset and we can only grab assets through iteration. So we do that and break immediately.
+		$controls['use_for_tvi'] = '<a href="#" onclick="for(var key in habari.media.assets) { $(\'#tvi_photosource\').val(habari.media.assets[key].path.slice(0,-habari.media.assets[key].basename.length-1)); break; }">' . _t( 'Use for sidephotos' ) . '</a>' ;
+		
+		return $controls;
+	}
+	
+	/**
 	 * Randomize extracted images and return them, taking care of the limit
 	 */
 	function filter_post_tvi_photos($out, $post)
 	{
 		// Discard values from other plugins (which should not exist)
+		// Replace them with the list of extracted images (which is generated when a post is saved)
 		$out = $post->info->tvi_imagelist;
-		if(!is_array($out)) return array();
 		
+		// Make sure we use an array to avoid errors
+		if(!is_array($out)) {
+			$out = array();
+		}
+		
+		// Next, grab media from the linked silo directory (if any)
+		if(isset($post->info->tvi_photosource)) {
+			$assets = Media::dir($post->info->tvi_photosource);
+			$out = array_merge($out, $assets);
+		}
+			
 		// Apply limit and random order
 		// TODO: Decide when to randomize here
 		if(isset($post->info->max_images) && !empty($post->info->max_images))
