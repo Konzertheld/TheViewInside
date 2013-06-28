@@ -326,8 +326,12 @@ class TheViewInside extends Theme
 					$imagelist[] = $image["original"];
 				}
 			}
-			
-			$post->info->tvi_imagelist = $imagelist;
+			if(count($imagelist)) {
+				$post->info->tvi_imagelist = $imagelist;
+			}
+			else {
+				unset($post->info->tvi_imagelist);
+			}
 		}
 		else
 		{
@@ -361,7 +365,7 @@ class TheViewInside extends Theme
 		}
 		
 		// Next, grab media from the linked silo directory (if any)
-		if(isset($post->info->tvi_photosource)) {
+		if(isset($post->info->tvi_photosource) && !empty($post->info->tvi_photosource)) {
 			$assets = Media::dir($post->info->tvi_photosource);
 			$out = array_merge($out, $assets);
 		}
