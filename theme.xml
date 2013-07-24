@@ -25,4 +25,5 @@
 		<feature url="http://wiki.habariproject.org/en/feature/area">area</feature>
 		<feature url="http://wiki.habariproject.org/en/feature/block">block</feature>
 	</provides>
+	<guid>8A50EA70-3ACD-4B0D-9C16-94DF922DC1FA</guid>
 </pluggable>
