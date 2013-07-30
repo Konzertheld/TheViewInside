@@ -19,7 +19,7 @@ blockquote {
 }
 
 #headerbar {
-	background: rgba(244,244,244,0.3);
+	background: rgba(244,244,244,0.3); /* same color as #f4f4f4 with 30% opacity */
 }
 
 #footer {
