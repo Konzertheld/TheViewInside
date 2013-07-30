@@ -61,23 +61,6 @@ body {
 	height: 215px;
 	width: 865px;
 }
-#headerbar h2 {
-	font-size: 20px;
-	font-weight: normal;
-}
-#headerbar .first, #headerbar .index_1, #headerbar .last {
-	width: 250px;
-	float: left;
-}
-#headerbar .index_1 {
-	width: 260px;
-}
-#headerbar .last {
-	width: 280px;
-}
-#headerbar .block div {
-	padding: 0 10px 0 0;
-}
 
 #socialcontainer {
 	position: absolute;
@@ -102,6 +85,21 @@ body {
 .block {
 	max-height: 210px;
 	overflow: auto;
+}
+
+#headerbar h2, #footer h2 {
+	font-size: 20px;
+	font-weight: normal;
+}
+#headerbar .first, #headerbar .index_1, #headerbar .last, #footer .first, #footer .index_1, #footer .last {
+	width: 250px;
+	float: left;
+}
+#headerbar .index_1, #footer .index_1 {
+	width: 260px;
+}
+#headerbar .last, #footer .last {
+	width: 280px;
 }
 
 /* SOCIAL NET ICONS */
