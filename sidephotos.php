@@ -2,7 +2,7 @@
 foreach($content->tvi_photos as $photo)
 {
 	if($photo instanceof MediaAsset) {
-		?><a href="<?php echo $photo->url; ?>"><img src="<?php echo $photo->url; ?>" alt="<?php echo $photo->title; ?>"></a><?php
+		?><a href="<?php echo $photo->url; ?>"><img src="<?php echo $photo->thumbnail; ?>" alt="<?php echo $photo->title; ?>"></a><?php
 	}
 	else {
 		echo $photo;

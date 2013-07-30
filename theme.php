@@ -367,7 +367,11 @@ class TheViewInside extends Theme
 		// Next, grab media from the linked silo directory (if any)
 		if(isset($post->info->tvi_photosource) && !empty($post->info->tvi_photosource)) {
 			$assets = Media::dir($post->info->tvi_photosource);
-			$out = array_merge($out, $assets);
+			// Create and assign thumbnails
+			foreach($assets as $asset) {
+				$asset->thumbnail = $this->create_thumbnail($asset);
+				$out[] = $asset;
+			}
 		}
 			
 		// Apply limit and random order
@@ -419,6 +423,82 @@ class TheViewInside extends Theme
 		$pageposts = Posts::get(array('id' => $pages));
 		//$block->stuff = $pages;
 		$block->pages = $pageposts;
+	}
+
+	// Helper functions
+	
+	public function create_thumbnail($asset)
+	{
+		$src_filename = $asset->url;
+		$max_width = 220;
+		
+		// Does derivative directory not exist?
+		$urldir = dirname( $src_filename ) . '/.tvi_thumbs';
+		$parts = parse_url($urldir);
+		$thumbdir = HABARI_PATH . $parts['path'];
+		
+		if ( !is_dir( $thumbdir ) ) {
+			// Create the derivative driectory
+			if ( !mkdir( $thumbdir, 0755 ) ) {
+				// Couldn't make derivative directory
+				return $asset->url;
+			}
+		}
+		
+		// Define the thumbnail filename
+		$dst_filename = $thumbdir . '/' . basename( $src_filename ) . ".thumbnail.jpg";
+		$dst_url = $urldir . '/' . basename( $src_filename ) . ".thumbnail.jpg";
+		
+		// If the file already exists, return
+		if(is_file($dst_filename)) {
+			return $dst_url;
+		}
+
+		// Get information about the image
+		$isize = @getimagesize( $src_filename );
+		if(is_array($isize)) {
+			list( $src_width, $src_height, $type, $attr )= $isize;
+		}
+		else {
+			$type = '';
+			$src_img = '';
+		}
+
+		// Load the image based on filetype
+		switch ( $type ) {
+		case IMAGETYPE_JPEG:
+			$src_img = imagecreatefromjpeg( $src_filename );
+			break;
+		case IMAGETYPE_PNG:
+			$src_img = imagecreatefrompng( $src_filename );
+			break;
+		case IMAGETYPE_GIF:
+			$src_img = imagecreatefromgif ( $src_filename );
+			break;
+		default:
+			return $asset->url;
+		}
+		// Did the image fail to load?
+		if ( !$src_img ) {
+			return $asset->url;
+		}
+
+		// Calculate the output size based on the original's aspect ratio
+		$thumb_w = $max_width;
+		$thumb_h = $src_height * $max_width / $src_width;
+
+		// Create the output image and copy the source to it
+		$dst_img = ImageCreateTrueColor( $thumb_w, $thumb_h );
+		imagecopyresampled( $dst_img, $src_img, 0, 0, 0, 0, $thumb_w, $thumb_h, $src_width, $src_height );
+
+		// Save the thumbnail as a JPEG
+		imagejpeg( $dst_img, $dst_filename );
+
+		// Clean up memory
+		imagedestroy( $dst_img );
+		imagedestroy( $src_img );
+		
+		return $dst_url;
 	}
 }
 ?>
