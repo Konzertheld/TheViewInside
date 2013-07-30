@@ -34,12 +34,12 @@ body {
 	margin: auto;
 }
 
-#contentcontainer, #headerbarcontainer, #footer {
+#contentcontainer, #headerbarcontainer, #footercontainer {
 	width: 100%;
 	margin: auto;
 	clear: both;
 }
-#contentcontainer, #headerbarcontainer {
+#contentcontainer, #headerbarcontainer, #footercontainer {
 	min-width: 800px;
 	max-width: 950px;
 }
@@ -73,7 +73,8 @@ body {
 #footer {
 	padding: 15px 30px 20px 30px;
 	text-align: center;
-	max-width: 890px;
+	float: left;
+	width: 890px;
 }
 #footer h2, #comments h3 {
 	padding-top: 10px;

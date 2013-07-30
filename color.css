@@ -22,6 +22,10 @@ blockquote {
 	background: rgba(244,244,244,0.3);
 }
 
+#footer {
+	background: rgba(129,191,95,0.8);
+}
+
 
 /* HEADER */
 #homelogo {
