@@ -7,57 +7,21 @@
 	* border-radius used for the page selector
 	* word-wrap used on some block elements (global stuff)
 	*/
-	
-/* FONT DECLARATIONS */
-/* Headings font by http://www.fontspace.com/kiwi-media */
-@font-face { font-family: KiwiAmbient; src: url('fonts/AMBIENT.TTF'); }
 
 /* GLOBAL STUFF */
-body, div, p, ul, ol, dl, li, dt, dd, h1, h2, h3, h4, h5, input, label {
-	margin: 0;
-	padding: 0;
-}
-div, p {
-	word-wrap: break-word;
-}
-p, ul, ol {
-	margin-bottom: 10px;
-}
-h5 {
-	font-weight: normal;
-}
-
-ul, ol {
-	padding-left: 20px;
-}
-ul {
-	list-style-type: square;
-}
-li {
-	margin-top: 3px;
-}
-dt {
-	font-weight: bold;
-	margin: 8px 0 3px 0;
-}
-img {
-	border: none;
-}
-
-a {
-	text-decoration: none;
-}
-a:hover {
-	text-decoration: underline;
-}
-
-h1, h2, h1 a, h2 a, h3, h3 a {
-	font-family: Georgia, Helvetica, Verdana, Arial, sans-serif;
-}
-blockquote {
-	border-left: 1px solid;
-	padding-left: 15px;
-}
+body, div, p, ul, ol, dl, li, dt, dd, h1, h2, h3, h4, h5, input, label { margin: 0; padding: 0; }
+div, p { word-wrap: break-word; }
+p, ul, ol { margin-bottom: 10px; }
+h5 { font-weight: normal; }
+ul, ol { padding-left: 20px; }
+ul { 	list-style-type: square; }
+li { margin-top: 3px; }
+dt { font-weight: bold; margin: 8px 0 3px 0; }
+img { border: none; }
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3, h1 a, h2 a, h3 a { font-family: Georgia, Helvetica, Verdana, Arial, sans-serif; }
+blockquote { border-left: 1px solid; padding-left: 15px; }
 
 /* CONTAINER STUFF */
 
@@ -84,10 +48,10 @@ body {
 
 /* HEADER */
 #headerbar {
-	padding: 120px 20px 10px 65px;
+	padding: 120px 20px 0px 65px;
 	float: left;
-	background: url('images/header9.png') top center no-repeat;
-	height: 250px;
+	background: background: rgba(255,255,255,0.1);
+	height: 215px;
 	width: 865px;
 }
 #headerbar h1 {
