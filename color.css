@@ -14,15 +14,15 @@ blockquote {
 	background-color: #f4f4f4;
 }
 
-#contentcontainer, #headerbarcontainer, #footercontainer, #footer {
+#contentcontainer, #headercontainer, #footercontainer {
 	color: #000;
 }
 
-#headerbar {
+#headerbarcontainer {
 	background: rgba(244,244,244,0.3); /* same color as #f4f4f4 with 30% opacity */
 }
 
-#footer {
+#footerbarcontainer {
 	background: rgba(129,191,95,0.8);
 }
 
@@ -54,6 +54,6 @@ blockquote {
 }
 
 /* FOOTER */
-#footer h2, #comments h3 {
+#comments h3 {
 	border-top-color: #8f0222;
 }

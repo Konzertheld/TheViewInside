@@ -16,9 +16,13 @@
 </head>
 <body>
 <div id="wrapper">
-	<div id="headerbarcontainer">
-		<div id="headerbar">
-			<?php echo $theme->area('headerbar'); ?>
+	<div id="headercontainer">
+		<div id="headerbarcontainer">
+			<div id="headerbarcenter">
+				<div id="headerbar">
+					<?php echo $theme->area('headerbar'); ?>
+				</div>
+			</div>
 		</div>
 		<h1 id="sitetitle"><a href="<?php Site::out_url('habari'); ?>" id="homelogo" title="<?php _t('Home'); ?>"><?php Options::out( 'title' ); ?></a></h1>
 		<div id="socialcontainer">
