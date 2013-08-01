@@ -26,19 +26,20 @@ blockquote { border-left: 1px solid; padding-left: 15px; }
 
 /* CONTAINER STUFF */
 
-body {
-	font-family: Helvetica, Verdana, Arial, sans-serif;
-	font-size: 13px;
+body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
+#wrapper { margin: auto; }
+/* The inner wrapper saves space for the social container and the sidephotos */
+@media (min-width:800px) {
+	#innerwrapper { padding-right: 64px; }
 }
-#wrapper {
-	margin: auto;
+@media (min-width:480px) and (max-width:799px) {
+	#innerwrapper { padding-right: 24px; }
 }
 
 #contentcontainer, #headercontainer, #footercontainer {
 	width: 100%;
 	margin: auto;
 	clear: both;
-	min-width: 800px;
 	max-width: 950px;
 }
 #headercontainer, #footercontainer {
@@ -50,6 +51,8 @@ body {
 	left: -50%;
 }
 #headerbar, #footerbar {
+	padding-left: 30px;
+	padding-right: 30px;
 	position: relative;
 	left: 50%;
 }
@@ -62,11 +65,13 @@ body {
 	font-size:48px;
 	text-align: center;
 }
+
 #headerbarcontainer {
-	padding: 120px 20px 0px 20px;
+	padding-top: 120px;
 	float: left;
 	height: 215px;
-	width: 910px;
+	max-width: 950px;
+	width: 100%;
 }
 
 #socialcontainer {
@@ -75,13 +80,29 @@ body {
 	right: -24px;
 	z-index:1;
 }
+.socialneticon {
+	display: block;
+	width: 48px;
+	height: 48px;
+}
+@media (max-width:479px) {
+	#socialcontainer { right: 0px; top: 5px; }
+	.socialneticon { float: left; width: 24px; height: 24px; background-size: 24px; }
+	#headerbarcontainer { padding-top: 139px; }
+	#sitetitle { top: 34px; }
+}
 
 /* FOOTER */
 #footerbarcontainer {
-	padding: 15px 30px 20px 30px;
+	padding: 15px 0 20px 0;
 	text-align: center;
 	float: left;
-	width: 890px;
+	max-width: 950px;
+	width: 100%;
+}
+#footerbar {
+	padding-left: 30px;
+	padding-right: 30px;
 }
 #comments h3 {
 	padding-top: 10px;
@@ -93,6 +114,10 @@ body {
 .block {
 	margin-right: 15px;
 	float: left;
+}
+@media (max-width: 480px) {
+	.block { margin-right: 0; margin-top: 15px; }
+	#headerbarcontainer { min-height: 215px; height: auto; }
 }
 
 #headerbar .block {
@@ -132,13 +157,6 @@ body {
 	margin:0;
 }
 
-/* SOCIAL NET ICONS */
-.socialneticon {
-	display: block;
-	width: 48px;
-	height: 48px;
-}
-
 /* POSTS AND SIDEPHOTOS */
 .pagination, .postnavi {
 	margin: 0;
@@ -153,7 +171,9 @@ body {
 	clear:both;
 	padding:15px 40px 15px 40px;
 	position:relative;
-	min-height:300px;
+}
+@media (min-height:481px) {
+	.post { min-height:300px; }
 }
 
 .post.notags  {
@@ -191,20 +211,20 @@ body {
 	text-align:justify;
 }
 
-.withsidecontent {
-	margin-right:150px;
-}
-
-.postside {
-	position:absolute;
-	padding: 15px 15px 10px 7px;
-	overflow:hidden;
-	min-height:200px;
-	width:220px;
-	top:-15px;
-	right:-104px;
-	text-align:right;
-	max-height:100%;
+/* This is the sidephoto magic. Don't use it if the screen resolution is small. */
+@media (min-width:800px) {
+	.withsidecontent { margin-right:150px; }
+	.postside {
+		position:absolute;
+		padding: 15px 15px 10px 7px;
+		overflow:hidden;
+		min-height:200px;
+		width:220px;
+		top:-15px;
+		right:-104px;
+		text-align:right;
+		max-height:100%;
+	}
 }
 
 .post img  {

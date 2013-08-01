@@ -12,21 +12,22 @@ if(isset($opts['socialnets']))
 		{
 			$revimage = substr($image, 0, strrpos($image, '.')) . 'i' . substr($image, strrpos($image, '.'));
 			echo '#net-' . Utils::slugify($socialnet) . ' {';
-			echo "background:transparent url('" . Site::get_url('theme') . "/images/icons/$image') no-repeat; }";
+			echo "background-image:url('" . Site::get_url('theme') . "/images/icons/$image'); }";
+			echo "background-repeat:no-repeat; }";
 			echo '#net-' . Utils::slugify($socialnet) . ':hover {';
-			echo "background:transparent url('" . Site::get_url('theme') . "/images/icons/$revimage') no-repeat; }";
+			echo "background-image:url('" . Site::get_url('theme') . "/images/icons/$revimage'); }";
 		}
 	}
 }
 if($opts['social_postfeed'])
 { ?>
-#net-postfeed {background:transparent url('<?php Site::out_url('theme') ?>/images/icons/postfeed.png') no-repeat; }
-#net-postfeed:hover {background:transparent url('<?php Site::out_url('theme') ?>/images/icons/postfeedi.png') no-repeat; }
+#net-postfeed {background-image:url('<?php Site::out_url('theme') ?>/images/icons/postfeed.png'); background-repeat:no-repeat; }
+#net-postfeed:hover {background-image:url('<?php Site::out_url('theme') ?>/images/icons/postfeedi.png'); }
 <?php }
 if($opts['social_commentsfeed'])
 { ?>
-#net-commentsfeed {background:transparent url('<?php Site::out_url('theme') ?>/images/icons/commentsfeed.png') no-repeat; }
-#net-commentsfeed:hover {background:transparent url('<?php Site::out_url('theme') ?>/images/icons/commentsfeedi.png') no-repeat; }
+#net-commentsfeed {background-image:url('<?php Site::out_url('theme') ?>/images/icons/commentsfeed.png'); background-repeat:no-repeat; }
+#net-commentsfeed:hover {background-image:url('<?php Site::out_url('theme') ?>/images/icons/commentsfeedi.png'); }
 <?php }
 ?>
 </style>

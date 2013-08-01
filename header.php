@@ -15,7 +15,7 @@
 	<?php echo $theme->header(); ?>
 </head>
 <body>
-<div id="wrapper">
+<div id="wrapper"><div id="innerwrapper">
 	<div id="headercontainer">
 		<div id="headerbarcontainer">
 			<div id="headerbarcenter">
