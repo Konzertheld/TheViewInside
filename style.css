@@ -118,7 +118,7 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 	float: left;
 	width: 250px;
 }
-@media (max-width: 480px) {
+@media (max-width: 640px) {
 	.block { margin-right: 0; margin-top: 15px; }
 	#headerbarcontainer { min-height: 215px; height: auto; }
 }
