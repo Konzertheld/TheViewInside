@@ -133,16 +133,6 @@ class TheViewInside extends Theme
 	 */
 	public function action_add_template_vars()
 	{
-		if( !$this->template_engine->assigned( 'pages' ) ) {
-			$this->assign('pages', Posts::get( array( 'content_type' => 'page', 'status' => Post::status('published'), 'nolimit' => 1 ) ) );
-		}
-
-		$page = Controller::get_var( 'page' );
-		$page = isset ( $page ) ? $page : 1;
-		if( !$this->template_engine->assigned( 'page' ) ) {
-			$this->assign('page', $page );
-		}
-
 		$this->assign( 'multipleview', false);
 		$action = Controller::get_action();
 		if ($action == 'display_home' || $action == 'display_entries' || $action == 'search' || $action == 'display_tag' || $action == 'display_date') {
