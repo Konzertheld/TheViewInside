@@ -15,10 +15,10 @@
 		<?php endif; ?>
 	</div>
 	<div class="postcontent-container">
-		<div class="postcontent<?php if(count($content->tvi_photos)) echo " withsidecontent"; ?>">
+		<div class="postcontent<?php if($content->tvi_hasphotos) echo " withsidecontent"; ?>">
 			<?php echo $content->content_out;?>
 		</div>
-		<?php if(count($content->tvi_photos)): ?>
+		<?php if($content->tvi_hasphotos): ?>
 		<div class='postside'>
 			<div class='postside-photos'>
 				<?php echo $content->tvi_photos_out; ?>

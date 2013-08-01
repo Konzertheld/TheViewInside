@@ -351,6 +351,18 @@ class TheViewInside extends Theme
 	}
 	
 	/**
+	 * Convenience function to save time. We could just do a count() on the real photo function
+	 * but that would require collecting all the photos just for checking,
+	 * so we rather just look if there is something.
+	 */
+	public function filter_post_tvi_hasphotos($out, $post)
+	{	
+		$extracted = $post->info->tvi_imagelist;
+		$photosource = $post->info->tvi_photosource;
+		return ((isset($post->info->tvi_imagelist) && !empty($post->info->tvi_imagelist)) || (isset($photosource) && !empty($photosource)));
+	}
+	
+	/**
 	 * Randomize extracted images and return them, taking care of the limit
 	 */
 	function filter_post_tvi_photos($out, $post)
@@ -365,8 +377,9 @@ class TheViewInside extends Theme
 		}
 		
 		// Next, grab media from the linked silo directory (if any)
-		if(isset($post->info->tvi_photosource) && !empty($post->info->tvi_photosource)) {
-			$assets = Media::dir($post->info->tvi_photosource);
+		$photosource = $post->info->tvi_photosource;
+		if(isset($photosource) && !empty($photosource)) {
+			$assets = Media::dir($photosource);
 			// Create and assign thumbnails
 			foreach($assets as $asset) {
 				$asset->thumbnail = $this->create_thumbnail($asset);
