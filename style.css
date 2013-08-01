@@ -262,8 +262,8 @@ body {
 	margin-top: 10px;
 }
 
-.formcontrol input[type=text], #cf_content {
-	width:500px;
+.formcontrol input:not([type=submit]), #cf_content textarea {
+	width: 60%;
 	
 }
 .formcontrol, #cf_content {
@@ -276,7 +276,7 @@ body {
 
 /* OTHER ELEMENTS IN MULTIPLE VIEW */
 #page-selector {
-	margin: 10px 170px 0 30px;
+	margin: 10px 20% 0 30px;
 	padding: 5px 10px;
 	border-top: 1px solid;
 }
