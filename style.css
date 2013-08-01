@@ -58,12 +58,17 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 }
 
 /* HEADER */
-#sitetitle {
+#sitetitle, #tagline {
 	position: absolute;
 	top: 15px;
 	width: 100%;
 	font-size:48px;
 	text-align: center;
+}
+#tagline {
+	display: block;
+	top: 68px;
+	font-size: 32px;
 }
 
 #headerbarcontainer {
@@ -90,6 +95,7 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 	.socialneticon { float: left; width: 24px; height: 24px; background-size: 24px; }
 	#headerbarcontainer { padding-top: 139px; }
 	#sitetitle { top: 34px; }
+	#tagline { top: 87px; }
 }
 
 /* FOOTER */
@@ -99,10 +105,6 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 	float: left;
 	max-width: 950px;
 	width: 100%;
-}
-#footerbar {
-	padding-left: 30px;
-	padding-right: 30px;
 }
 #comments h3 {
 	padding-top: 10px;
@@ -114,8 +116,9 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 .block {
 	margin-right: 15px;
 	float: left;
+	width: 250px;
 }
-@media (max-width: 480px) {
+@media (max-width: 640px) {
 	.block { margin-right: 0; margin-top: 15px; }
 	#headerbarcontainer { min-height: 215px; height: auto; }
 }
@@ -131,6 +134,7 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 
 #headerbar .first.last, #footer .first.last { /* if it's the only block */
 	margin: 0;
+	width: auto;
 	max-width: 100%;
 }
 
