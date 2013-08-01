@@ -24,7 +24,7 @@
 				</div>
 			</div>
 		</div>
-		<h1 id="sitetitle"><a href="<?php Site::out_url('habari'); ?>" id="homelogo" title="<?php _t('Home'); ?>"><?php Options::out( 'title' ); ?></a></h1>
+		<h1 id="sitetitle"><a href="<?php Site::out_url('habari'); ?>" title="<?php _t('Home'); ?>"><?php Options::out( 'title' ); ?></a></h1>
 		<div id="socialcontainer">
 			<?php echo $theme->socialneticons(); ?>
 		</div>

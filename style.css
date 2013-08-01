@@ -64,6 +64,7 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 	width: 100%;
 	font-size:48px;
 	text-align: center;
+	padding-left: 16px;
 }
 
 #headerbarcontainer {
@@ -100,10 +101,6 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 	max-width: 950px;
 	width: 100%;
 }
-#footerbar {
-	padding-left: 30px;
-	padding-right: 30px;
-}
 #comments h3 {
 	padding-top: 10px;
 	border-top-width: 1px;
@@ -114,6 +111,7 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 .block {
 	margin-right: 15px;
 	float: left;
+	width: 250px;
 }
 @media (max-width: 480px) {
 	.block { margin-right: 0; margin-top: 15px; }
@@ -131,6 +129,7 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 
 #headerbar .first.last, #footer .first.last { /* if it's the only block */
 	margin: 0;
+	width: auto;
 	max-width: 100%;
 }
 
