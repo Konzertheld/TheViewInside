@@ -10,8 +10,6 @@ class TheViewInside extends Theme
 {
 	var $defaultsettings = array(
 		'content_types' => 'entry',
-		'gpmulti' => 0,
-		'gpsingle' => 1,
 		'social_postfeed' => 1,
 		'social_commentsfeed' => 0,
 		'socialnets' => '',
@@ -144,8 +142,6 @@ class TheViewInside extends Theme
 		// Use theme options to set values that can be used directly in the templates
 		$opts = Options::get_group( __CLASS__ );
 		$this->assign('content_types', $opts['content_types']);
-		$this->assign('gpmulti', $opts['gpmulti']);
-		$this->assign('gpsingle', $opts['gpsingle']);
 	}
 
 	/**
