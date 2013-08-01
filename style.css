@@ -58,13 +58,17 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 }
 
 /* HEADER */
-#sitetitle {
+#sitetitle, #tagline {
 	position: absolute;
 	top: 15px;
 	width: 100%;
 	font-size:48px;
 	text-align: center;
-	padding-left: 16px;
+}
+#tagline {
+	display: block;
+	top: 68px;
+	font-size: 32px;
 }
 
 #headerbarcontainer {
@@ -91,6 +95,7 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 	.socialneticon { float: left; width: 24px; height: 24px; background-size: 24px; }
 	#headerbarcontainer { padding-top: 139px; }
 	#sitetitle { top: 34px; }
+	#tagline { top: 87px; }
 }
 
 /* FOOTER */
