@@ -183,6 +183,9 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 .post.notags  {
 	min-height: 90px;
 }
+.post.notags .postside {
+	min-height: 50px;
+}
 
 .post.blogroll {
 	min-height: 100px;
