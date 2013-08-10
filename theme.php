@@ -236,9 +236,13 @@ class TheViewInside extends Theme
 	 */
 	public function theme_metaline($theme, $post)
 	{
-		// TODO: Fallback!
 		$this->assign("post", $post);
-		return $this->fetch("metaline.".Post::type_name($post->content_type));
+		if ($this->template_exists("metaline." . Post::type_name($post->content_type))) {
+			return $this->fetch("metaline." . Post::type_name($post->content_type));
+		}
+		else {
+			return $this->fetch("metaline.entry");
+		}
 	}
 	
 	/**
