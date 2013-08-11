@@ -125,7 +125,7 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 
 #headerbar .block {
 	max-height: 210px;
-	overflow: auto;
+	overflow: hidden;
 }
 
 #headerbar .last {
