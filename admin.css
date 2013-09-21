@@ -24,12 +24,12 @@ form label {
 .tvi_rightcol input {
 	width: 200px;
 }
-#social_postfeed, #gpmulti {
+#social_postfeed {
 	clear:both;
 }
-#social_postfeed, #social_commentsfeed, #gpmulti, #gpsingle {
+#social_postfeed, #social_commentsfeed {
 	float: left;
 }
-#gpmulti label, #gpsingle label, #social_postfeed label, #social_commentsfeed label {
+#social_postfeed label, #social_commentsfeed label {
 	width: 200px;
 }

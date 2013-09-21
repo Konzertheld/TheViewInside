@@ -4,7 +4,7 @@
 	<license url="http://www.apache.org/licenses/LICENSE-2.0.html">Apache Software License 2.0</license>
 	<author url="http://konzertheld.de">Christian Gredig</author>
 	<author url="http://habariproject.org/">The Habari Community</author>
-	<version>0.2</version>
+	<version>0.3</version>
 	<description>Clean theme with many small configurable things. Several possibilities of adding images to posts. Integrates with galleries.</description>
 	<template_engine>rawphpengine</template_engine>
 	<areas>

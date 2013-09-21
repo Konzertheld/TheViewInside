@@ -10,8 +10,6 @@ class TheViewInside extends Theme
 {
 	var $defaultsettings = array(
 		'content_types' => 'entry',
-		'gpmulti' => 0,
-		'gpsingle' => 1,
 		'social_postfeed' => 1,
 		'social_commentsfeed' => 0,
 		'socialnets' => '',
@@ -56,7 +54,6 @@ class TheViewInside extends Theme
 	{
 		$this->initialize_options();
 		Format::apply('autop', 'comment_content_out');
-		$this->add_template( 'block.tvipages', dirname(__FILE__) . '/block.tvipages.php' );
 		$this->load_text_domain('TheViewInside');
 	}
 	
@@ -134,16 +131,6 @@ class TheViewInside extends Theme
 	 */
 	public function action_add_template_vars()
 	{
-		if( !$this->template_engine->assigned( 'pages' ) ) {
-			$this->assign('pages', Posts::get( array( 'content_type' => 'page', 'status' => Post::status('published'), 'nolimit' => 1 ) ) );
-		}
-
-		$page = Controller::get_var( 'page' );
-		$page = isset ( $page ) ? $page : 1;
-		if( !$this->template_engine->assigned( 'page' ) ) {
-			$this->assign('page', $page );
-		}
-
 		$this->assign( 'multipleview', false);
 		$action = Controller::get_action();
 		if ($action == 'display_home' || $action == 'display_entries' || $action == 'search' || $action == 'display_tag' || $action == 'display_date') {
@@ -155,8 +142,6 @@ class TheViewInside extends Theme
 		// Use theme options to set values that can be used directly in the templates
 		$opts = Options::get_group( __CLASS__ );
 		$this->assign('content_types', $opts['content_types']);
-		$this->assign('gpmulti', $opts['gpmulti']);
-		$this->assign('gpsingle', $opts['gpsingle']);
 	}
 
 	/**
@@ -251,9 +236,13 @@ class TheViewInside extends Theme
 	 */
 	public function theme_metaline($theme, $post)
 	{
-		// TODO: Fallback!
 		$this->assign("post", $post);
-		return $this->fetch("metaline.".Post::type_name($post->content_type));
+		if ($this->template_exists("metaline." . Post::type_name($post->content_type))) {
+			return $this->fetch("metaline." . Post::type_name($post->content_type));
+		}
+		else {
+			return $this->fetch("metaline.entry");
+		}
 	}
 	
 	/**
@@ -407,35 +396,6 @@ class TheViewInside extends Theme
 	{
 		$opts = Options::get_group( __CLASS__ );
 		return !in_array($post->author->id, $opts['default_authors']);
-	}
-	
-	// Block section
-	
-	public function filter_block_list( $blocklist )
-	{
-		$blocklist[ 'tvipages' ] = _t( 'TheViewInside pages' );
-		return $blocklist;
-	}
-	
-	public function action_block_form_tvipages( $form, $block )
-	{
-		$pages = Posts::get(array('content_type' => Post::type('page'), 'status' => Post::status('published')));
-		foreach($pages as $page)
-		{
-			$pageoptions[$page->id] = $page->title;
-		}
-		$form->append( 'select', 'pages', __CLASS__ . '__pageblock_pages', _t( 'Pages to display:', __CLASS__ ) );
-		$form->pages->size = (count($pages) > 6) ? 6 : count($pages);
-		$form->pages->multiple = true;
-		$form->pages->options = $pageoptions;
-	}
-	
-	public function action_block_content_tvipages( $block )
-	{
-		$pages = Options::get(__CLASS__ . '__pageblock_pages');
-		$pageposts = Posts::get(array('id' => $pages));
-		//$block->stuff = $pages;
-		$block->pages = $pageposts;
 	}
 
 	// Helper functions
