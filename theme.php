@@ -400,6 +400,7 @@ class TheViewInside extends Theme
 
 	// Helper functions
 	
+	// Will become obsolete in 0.10
 	public function create_thumbnail($asset)
 	{
 		$src_filename = $asset->url;

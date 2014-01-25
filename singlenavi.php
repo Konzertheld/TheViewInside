@@ -2,6 +2,7 @@
 	// Create queries for ascending and descending posts
 	// Content Types from options
 	// see also conversation up to here http://drunkenmonkey.org/irc/habari/2013-01-20#T15-01-55
+	// will become obsolete in 0.10
 	$query = "";
 	foreach($content_types as $typenr)
 	{
