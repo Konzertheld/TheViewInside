@@ -48,13 +48,24 @@ class TheViewInside extends Theme
 	}
 	
 	/**
-	 * Execute on theme init to apply these filters to output
+	 * Grab variables, translations and formats on initialization
 	 */
 	public function action_init_theme()
 	{
-		$this->initialize_options();
 		Format::apply('autop', 'comment_content_out');
 		$this->load_text_domain('TheViewInside');
+		
+		$this->assign( 'multipleview', false);
+		$action = Controller::get_action();
+		if ($action == 'display_home' || $action == 'display_entries' || $action == 'search' || $action == 'display_tag' || $action == 'display_date') {
+			$this->assign('multipleview', true);
+		}
+
+		$this->assign('controller_action', $action);
+		
+		// Use theme options to set values that can be used directly in the templates
+		$opts = Options::get_group( __CLASS__ );
+		$this->assign('content_types', $opts['content_types']);
 	}
 	
 	public function action_admin_header($theme)
@@ -124,24 +135,6 @@ class TheViewInside extends Theme
 		Session::notice(_t('Options saved'));
 		Utils::redirect(URL::get('admin', 'page=themes'));
 		return false;
-	}
-
-	/**
-	 * Add some variables to the template output
-	 */
-	public function action_add_template_vars()
-	{
-		$this->assign( 'multipleview', false);
-		$action = Controller::get_action();
-		if ($action == 'display_home' || $action == 'display_entries' || $action == 'search' || $action == 'display_tag' || $action == 'display_date') {
-			$this->assign('multipleview', true);
-		}
-
-		$this->assign('controller_action', $action);
-		
-		// Use theme options to set values that can be used directly in the templates
-		$opts = Options::get_group( __CLASS__ );
-		$this->assign('content_types', $opts['content_types']);
 	}
 
 	/**
