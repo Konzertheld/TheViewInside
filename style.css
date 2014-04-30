@@ -26,7 +26,7 @@ blockquote { border-left: 1px solid; padding-left: 15px; }
 
 /* CONTAINER STUFF */
 
-body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
+body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 14px; }
 #wrapper { margin: auto; }
 /* The inner wrapper saves space for the social container and the sidephotos */
 @media (min-width:800px) {
@@ -164,6 +164,7 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 /* POSTS AND SIDEPHOTOS */
 .pagination, .postnavi {
 	float:right;
+	margin: 0;
 }
 .pagination a:hover, .postnavi a:hover {
 	text-decoration: none;
@@ -171,7 +172,7 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 
 .post, #comments {
 	clear:both;
-	padding:15px 40px 15px 40px;
+	padding:15px 40px 15px 50px;
 	position:relative;
 }
 @media (min-height:481px) {
@@ -208,7 +209,7 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 .postmeta-tags {
 	display: inline-block;
 	position: absolute;
-	left: 6px;
+	left: 10px;
 	bottom: 19px;
 	-webkit-transform: rotate(-90deg);
 	-webkit-transform-origin: left top 0;
