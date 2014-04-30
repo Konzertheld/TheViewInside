@@ -3,9 +3,9 @@
 <div id="contentcontainer">
 	<div id="content">
 		<div class="single post <?php echo Post::type_name($post->content_type[0]); ?><?php if($theme->evenodd) echo ' even'; else echo ' odd';?>">
-			<?php include("singlenavi.php"); ?>
 			<div class="postmeta">
 				<h2 class="postmeta-title"><a href="<?php echo $post->permalink; ?>" title="<?php echo $post->title_out; ?>"><?php echo $post->title_out; ?></a></h2>
+				<?php include("singlenavi.php"); ?>
 				<div class="postmeta-meta">
 					<?php echo $theme->metaline($post); ?>
 				</div>

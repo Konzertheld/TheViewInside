@@ -3,8 +3,8 @@
 <?php if($theme->evenodd) echo ' even'; else echo ' odd';?>
 <?php if(!count($content->tags)) echo ' notags';?>">
 	<div class="postmeta">
-		<?php include("multinavi.php"); ?>
 		<h2 class="postmeta-title"><a href="<?php echo $content->permalink; ?>" title="<?php echo $content->title_out; ?>"><?php echo $content->title_out; ?></a></h2>
+		<?php include("multinavi.php"); ?>
 		<div class="postmeta-meta">
 			<?php echo $theme->metaline($content); ?>
 		</div>

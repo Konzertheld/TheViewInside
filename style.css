@@ -163,8 +163,6 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 
 /* POSTS AND SIDEPHOTOS */
 .pagination, .postnavi {
-	margin: 0;
-	padding: 20px 0 0 0;
 	float:right;
 }
 .pagination a:hover, .postnavi a:hover {
@@ -195,7 +193,6 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 	font-weight:normal;
 	font-size:36px;
 	float: left;
-	max-width: 85%;
 }
 .notags .postmeta-title {
 	max-width: 100%;
