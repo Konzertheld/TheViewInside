@@ -1,0 +1,159 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The View Inside\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-15 15:49+0100\n"
+"PO-Revision-Date: 2011-08-15 15:51+0100\n"
+"Last-Translator: Konzertheld <konzertheld@konzertheld.de>\n"
+"Language-Team: Konzertheld <konzertheld@konzertheld.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_n:1,2;_ne:1,2;_t;_e\n"
+"X-Poedit-Basepath: ../../../\n"
+"Plural-Forms: nplurals=2; plural=n==1?0:1;\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid " %s said at %s:"
+msgstr " %s sagte am %s:"
+
+msgid "%1$d comment"
+msgid_plural "%1$d comments"
+msgstr[0] "%1$d Kommentar"
+msgstr[1] "%1$d Kommentare"
+
+msgid "%1$d comment so far"
+msgid_plural "%1$d comments so far"
+msgstr[0] "%1$d Kommentar bisher"
+msgstr[1] "%1$d Kommentare bisher"
+
+msgid "%1$d unmoderated comment. "
+msgid_plural "%1$d unmoderated comments. "
+msgstr[0] "%1$d unmoderierter Kommentar"
+msgstr[1] "%1$d unmoderierte Kommentare"
+
+msgid "&laquo; Newer"
+msgstr "&laquo; Neuer"
+
+msgid "A report about "
+msgstr "Ein Bericht über "
+
+msgid "An article from %s"
+msgstr "Ein Artikel vom %s"
+
+msgid "An article from %s, last updated %s"
+msgstr "Ein Artikel vom %s, zuletzt aktualisiert am %s"
+
+msgid "Back to homepage"
+msgstr "Zurück zur Startseite"
+
+msgid "Comments are closed for this post."
+msgstr "Kommentare sind für diesen Post geschlossen."
+
+msgid "Content Types in pagination:"
+msgstr "Inhaltstypen in der Navigation:"
+
+msgid "Continue reading %s"
+msgstr "%s weiterlesen"
+
+msgid "Edit %s"
+msgstr "Bearbeite %s"
+
+msgid "Edit post"
+msgstr "Post bearbeiten"
+
+msgid "Extract images from sourcecode"
+msgstr "Bilder aus Quellcode extrahieren"
+
+msgid "Go to comments admin."
+msgstr "Gehe zur Kommentar-Administration."
+
+msgid "Guest article by %s"
+msgstr "Gastartikel von %s"
+
+msgid "Information page, last updated %s"
+msgstr "Informationsseite, zuletzt aktualisiert %s"
+
+msgid "Jump to comments"
+msgstr "Springe zu Kommentaren"
+
+msgid "Jump to top"
+msgstr "Springe nach oben"
+
+msgid "Max number of images in sidebar"
+msgstr "Maximale Anzahl Bilder in der Seitenleiste"
+
+msgid "Next Post"
+msgstr "Nächster Post"
+
+msgid "No comments"
+msgstr "Keine Kommentare"
+
+msgid "No comments yet. Start the discussion!"
+msgstr "Noch keine Kommentare. Starte die Diskussion!"
+
+msgid "Older &raquo;"
+msgstr "Älter &raquo;"
+
+msgid "Options saved"
+msgstr "Einstellungen gespeichert"
+
+msgid "Please do not load this page directly."
+msgstr "Bitte lade diese Seite nicht direkt."
+
+msgid "Previous Post"
+msgstr "Vorheriger Post"
+
+msgid "Remove images from sourcecode"
+msgstr "Bilder aus Quellcode entfernen"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Say something!"
+msgstr "Sag etwas!"
+
+msgid "Show Google +1 Button on multiple views:"
+msgstr "Zeige Google +1-Button in Ansichten mit mehreren Posts:"
+
+msgid "Show Google +1 Button on single views:"
+msgstr "Zeige Google +1-Button in Ansichten mit einem Post:"
+
+msgid "Sidephotos, max width 220px"
+msgstr "Seitenfotos, maximale Breite 220px"
+
+msgid "Sources: "
+msgstr "Quellen: "
+
+msgid "Subscribe to this post's comments"
+msgstr "Die Kommentare dieses Posts abonnieren"
+
+msgid "The photos' source"
+msgstr "Die Quelle des Fotos"
+
+msgid "TheViewInside"
+msgstr "TheViewInside"
+
+msgid "There is no next Post"
+msgstr "Es gibt keinen weiteren Post"
+
+msgid "There is no previous Post"
+msgstr "Es gibt keinen vorherigen Post"
+
+msgid "These authors are no guests:"
+msgstr "Diese Autoren sind keine Gäste:"
+
+msgid "This comment is awaiting moderation"
+msgstr "Dein Kommentar muss moderiert werden"
+
+msgid "View entire album: "
+msgstr "Ganzes Album anzeigen: "
+
+msgid "an event"
+msgstr "ein Event"
+
+msgid "This post and more are filed under"
+msgstr "Dieser und weitere Artikel wurden markiert"
