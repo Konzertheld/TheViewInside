@@ -169,7 +169,7 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 	text-decoration: none;
 }
 
-.post {
+.post, #comments {
 	clear:both;
 	padding:15px 40px 15px 40px;
 	position:relative;
@@ -203,6 +203,19 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 13px; }
 .event .postmeta-meta {
 	font-weight:bold;
 	font-size:110%;
+}
+
+.postmeta-tags {
+	display: inline-block;
+	position: absolute;
+	left: 6px;
+	bottom: 19px;
+	-webkit-transform: rotate(-90deg);
+	-webkit-transform-origin: left top 0;
+}
+.postmeta-tags p {
+	margin: 0;
+	font-size: 90%;
 }
 
 .postcontent-container {

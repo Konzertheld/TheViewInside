@@ -170,7 +170,7 @@ class TheViewInside extends Theme
 	{
 		foreach($array as $tag) $array_out[] = "<li><a href='" . URL::get("display_entries_by_tag", array( "tag" => $tag->term) ) . "' rel='tag'>" . $tag->term_display . "</a></li>\n";
 		$out = '<ul>' . implode('', $array_out) . '</ul>';
-		return $out;
+		return "<p>" . _t("This post and more are filed under", __CLASS__) . "</p>$out";
  	}
 	
 	

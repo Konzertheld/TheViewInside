@@ -31,8 +31,8 @@
 				</div>
 				<?php endif; ?>
 			</div>
-			<?php include("comments.php"); ?>
 		</div>
+		<?php include("comments.php"); ?>
 	</div>
 </div>
 <?php include 'footer.php'; ?>
