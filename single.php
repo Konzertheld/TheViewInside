@@ -24,10 +24,6 @@
 					<div class='postside-photos'>
 						<?php echo $post->tvi_photos_out; ?>
 					</div>
-					<div class='postside-photos-footer'>
-						<?php //TODO: Make this optional to protect private albums
-						echo $post->tvi_photos_footer_out; ?>
-					</div>
 				</div>
 				<?php endif; ?>
 			</div>

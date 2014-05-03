@@ -22,7 +22,6 @@
 		<div class='postside'>
 			<div class='postside-photos'>
 				<?php echo $content->tvi_photos_out; ?>
-				<?php //$theme->area('sidephotos'); ?>
 			</div>
 		</div>
 		
