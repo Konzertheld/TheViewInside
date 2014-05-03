@@ -1,21 +1,6 @@
 <?php
-	// Create queries for ascending and descending posts
-	// Content Types from options
-	// see also conversation up to here http://drunkenmonkey.org/irc/habari/2013-01-20#T15-01-55
-	// will become obsolete in 0.10
-	$query = "";
-	foreach($content_types as $typenr)
-	{
-		$query .= "content_type=$typenr OR ";
-	}
-	$query = substr($query, 0, strlen($query)-4);
-	$query = " AND status={$post->status} AND ($query)";
-	$dparams = array('where' => "pubdate <= '{$post->pubdate->sql}' $query");
-	$aparams = array('where' => "pubdate >= '{$post->pubdate->sql}' $query");
-	
-	$dpost = $post->descend($dparams);
-	$apost = $post->ascend($aparams);
-	
+$dpost = $post->descend();
+$apost = $post->ascend();
 ?>
 
 <p class="pagination">

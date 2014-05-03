@@ -2,11 +2,11 @@ form label {
 	margin: 0 6px 3px 0!important;
 	clear:both;
 }
-#content_types, #default_authors {
+#default_authors {
 	float: left;
 	width: 45%;
 }
-#content_types label, #default_authors label, #socialnets label {
+#default_authors label, #socialnets label {
 	float: none;
 	display: block;
 	width: 80%;

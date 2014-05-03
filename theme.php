@@ -9,7 +9,6 @@
 class TheViewInside extends Theme
 {
 	var $defaultsettings = array(
-		'content_types' => 'entry',
 		'social_postfeed' => 1,
 		'social_commentsfeed' => 0,
 		'socialnets' => '',
@@ -65,7 +64,6 @@ class TheViewInside extends Theme
 		
 		// Use theme options to set values that can be used directly in the templates
 		$opts = Options::get_group( __CLASS__ );
-		$this->assign('content_types', $opts['content_types']);
 	}
 	
 	public function filter_rewrite_rules($db_rules)
@@ -105,16 +103,7 @@ class TheViewInside extends Theme
 	public function action_theme_ui( $theme )
 	{
 		$ui = new FormUI(__CLASS__);
-		$ui->append('fieldset', 'general', _t('General settings', __CLASS__));
-		// Get the available content types
-		$types = Post::list_active_post_types();
-		unset($types['any']);
-		$types = array_flip($types);
-		$ui->general->append( 'select', 'content_types', __CLASS__ . '__content_types', _t( 'Content Types in pagination:', __CLASS__ ) );
-		$ui->general->content_types->size = count($types);
-		$ui->general->content_types->multiple = true;
-		$ui->general->content_types->options = $types;
-		
+		$ui->append('fieldset', 'general', _t('General settings', __CLASS__));	
 		foreach(Users::get_all() as $user)
 			$users[$user->id] = $user->displayname;
 		$ui->general->append( 'select', 'default_authors', __CLASS__ . '__default_authors', _t('These authors are no guests:', __CLASS__ ));
