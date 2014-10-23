@@ -224,7 +224,7 @@ class TheViewInside extends Theme
 				$socialurl = $opts[Utils::slugify($socialnet) . '__url'];
 				if(!empty($socialurl))
 				{
-					$out .= "<a href='$socialurl' id='net-" . Utils::slugify($socialnet) . "' title='$socialnet' class='socialneticon'></a>";
+					$out .= "<a href='$socialurl' id='net-" . Utils::slugify($socialnet) . "' class='socialneticon'></a>";
 				}
 			}
 		}
