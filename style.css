@@ -213,6 +213,10 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 14px; }
 	bottom: 19px;
 	-webkit-transform: rotate(-90deg);
 	-webkit-transform-origin: left top 0;
+	-moz-transform: rotate(-90deg);
+	-moz-transform-origin: left top 0;
+	transform: rotate(-90deg);
+	transform-origin: left top 0;
 }
 .postmeta-tags p {
 	margin: 0;
