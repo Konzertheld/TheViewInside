@@ -263,10 +263,10 @@ class TheViewInside extends Theme
 				
 		// add settings container and checkboxes
 		$viewinsidefields = $form->publish_controls->append('fieldset', 'viewinsidefields', _t('TheViewInside', __CLASS__));
-		$viewinsidefields->append('checkbox', 'extract_images', 'extract_images', _t('Extract images from sourcecode', __CLASS__));
-		$viewinsidefields->append('checkbox', 'remove_images', 'remove_images', _t('Remove images from sourcecode', __CLASS__));
-		$viewinsidefields->append('text', 'max_images', 'max_images', _t('Max number of images in sidebar', __CLASS__));
-		$viewinsidefields->append('text', 'tvi_photosource', 'tvi_photosource', _t('Photo(s) to use for the view inside', __CLASS__));
+		$viewinsidefields->append('checkbox', 'extract_images', 'null:null', _t('Extract images from sourcecode', __CLASS__));
+		$viewinsidefields->append('checkbox', 'remove_images', 'null:null', _t('Remove images from sourcecode', __CLASS__));
+		$viewinsidefields->append('text', 'max_images', 'null:null', _t('Max number of images in sidebar', __CLASS__));
+		$viewinsidefields->append('text', 'tvi_photosource', 'null:null', _t('Photo(s) to use for the view inside', __CLASS__));
 		
 		// load values and display the fields and if necessary fill them with initial values
 		if(isset($post->info->extract_images))
