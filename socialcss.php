@@ -12,7 +12,7 @@ if(isset($opts['socialnets']))
 		{
 			$revimage = substr($image, 0, strrpos($image, '.')) . 'i' . substr($image, strrpos($image, '.'));
 			echo '#net-' . Utils::slugify($socialnet) . ' {';
-			echo "background-image:url('" . Site::get_url('theme') . "/images/icons/$image'); }";
+			echo "background-image:url('" . Site::get_url('theme') . "/images/icons/$image');";
 			echo "background-repeat:no-repeat; }";
 			echo '#net-' . Utils::slugify($socialnet) . ':hover {';
 			echo "background-image:url('" . Site::get_url('theme') . "/images/icons/$revimage'); }";
