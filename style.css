@@ -12,7 +12,7 @@
 /* GLOBAL STUFF */
 body, div, p, ul, ol, dl, li, dt, dd, h1, h2, h3, h4, h5, input, label { margin: 0; padding: 0; }
 div, p { word-wrap: break-word; }
-p, ul, ol { margin-bottom: 10px; }
+p, ul, ol, dl { margin-bottom: 10px; }
 h5 { font-weight: normal; }
 ul, ol { padding-left: 20px; }
 ul { 	list-style-type: square; }
@@ -42,10 +42,10 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 14px; }
 	clear: both;
 	max-width: 950px;
 }
-#headercontainer, #footercontainer {
+#headercontainer {
 	position: relative;
 }
-#headerbarcenter, #footerbarcenter {
+#headerbarcenter {
 	position: relative;
 	float: right;
 	left: -50%;
@@ -53,6 +53,8 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 14px; }
 #headerbar, #footerbar {
 	padding-left: 30px;
 	padding-right: 30px;
+}
+#headerbar {
 	position: relative;
 	left: 50%;
 }
@@ -102,9 +104,6 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 14px; }
 #footerbarcontainer {
 	padding: 15px 0 20px 0;
 	text-align: center;
-	float: left;
-	max-width: 950px;
-	width: 100%;
 }
 #comments h3 {
 	padding-top: 10px;
@@ -231,6 +230,10 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 14px; }
 
 .postcontent {
 	text-align:justify;
+}
+
+.postcontent h3 {
+	font-size: 22px;
 }
 
 /* This is the sidephoto magic. Don't use it if the screen resolution is small. */
