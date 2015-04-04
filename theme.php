@@ -61,7 +61,7 @@ class TheViewInside extends Theme
 		}
 
 		$this->assign('controller_action', $action);
-		
+			
 		// Use theme options to set values that can be used directly in the templates
 		$opts = Options::get_group( __CLASS__ );
 	}
@@ -193,7 +193,7 @@ class TheViewInside extends Theme
 	
 	public function theme_socialneticons($theme)
 	{
-		$out = "";
+		$socialicons = array();
 		$opts = Options::get_group(get_class($theme));
 		if(isset($opts['socialnets']))
 		{
@@ -203,15 +203,18 @@ class TheViewInside extends Theme
 				$socialurl = $opts[Utils::slugify($socialnet) . '__url'];
 				if(!empty($socialurl))
 				{
-					$out .= "<a href='$socialurl' id='net-" . Utils::slugify($socialnet) . "' class='socialneticon'></a>";
+					$socialicons[] = array('url' => $socialurl, 'id' => $socialnet);
 				}
 			}
 		}
-		if($opts['social_postfeed'])
-			$out .= "<a href='" . URL::get('atom_feed', array('index' => 1)) . "' id='net-postfeed' title='" . _t('Atom feed for posts', __CLASS__) . "' class='socialneticon'></a>";
-		if($opts['social_commentsfeed'])
-			$out .= "<a href='" . URL::get('atom_feed_comments') . "' id='net-commentsfeed' title='" . _t('Atom feed for comments', __CLASS__) . "' class='socialneticon'></a>";
-		return $out;
+		if($opts['social_postfeed']) {
+			$socialicons[] = array('url' => URL::get('atom_feed', array('index' => 1)), 'id' => 'postfeed');
+		}
+		if($opts['social_commentsfeed']) {
+			$socialicons[] = array('url' => URL::get('atom_feed_comments', array('index' => 1)), 'id' => 'commentsfeed');
+		}
+		$theme->assign('socialicons', $socialicons);
+		return $theme->fetch('socialicons');
 	}
 	
 	/**

@@ -62,10 +62,12 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 14px; }
 /* HEADER */
 #sitetitle, #tagline {
 	position: absolute;
-	top: 15px;
 	width: 100%;
-	font-size:48px;
 	text-align: center;
+}
+#sitetitle {
+	top: 15px;
+	font-size:48px;
 }
 #tagline {
 	display: block;
@@ -76,7 +78,6 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 14px; }
 #headerbarcontainer {
 	padding-top: 120px;
 	float: left;
-	height: 215px;
 	max-width: 950px;
 	width: 100%;
 }
@@ -86,6 +87,12 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 14px; }
 	top: 15px;
 	right: -24px;
 	z-index:1;
+}
+#socialcontainer ol {
+	list-style-type: none;
+}
+#socialcontainer ol li {
+	display: block;
 }
 .socialneticon {
 	display: block;
@@ -256,6 +263,10 @@ body { font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 14px; }
 .post img  {
 	max-height:400px;
 	max-width:400px;
+}
+.gallery img {
+	max-height: 100%;
+	max-width: 100%;
 }
 
 .postside-photos img {
