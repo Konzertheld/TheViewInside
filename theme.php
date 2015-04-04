@@ -66,29 +66,6 @@ class TheViewInside extends Theme
 		$opts = Options::get_group( __CLASS__ );
 	}
 	
-	public function filter_rewrite_rules($db_rules)
-	{
-		$rule = RewriteRule::create_url_rule('"archives"/"type"/type', 'UserThemeHandler', 'display_posts_by_type');
-		$db_rules[] = $rule;
-	}
-	
-	/**
-	 * Handle incoming /archives/type/$type requests
-	 */
-	public function action_handler_display_posts_by_type($handler)
-	{
-		$this->assign('multipleview', true);
-		$params = array(
-			'nolimit' => '',
-			'orderby' => 'title ASC',
-			'status' => Post::status( 'published' ),
-			'content_type' => $handler['type'],
-		);
-		$posts = Posts::get($params);
-		$this->assign('posts', $posts);
-		$this->act_display(array("posts" => $posts));
-	}
-	
 	public function action_admin_header($theme)
 	{
 		if ($theme->page == 'themes')
