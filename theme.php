@@ -193,7 +193,7 @@ class TheViewInside extends Theme
 	 */
 	public function post_get_images($content)
 	{
-		//@TODO: Cache this. Also, it's called in too many places and images are stored as postinfo. wtf?
+		//@TODO: Cache this.
 		preg_match_all("@<a [^>]*?rel=[^>]*>(<img[^>]+>)</a>@u", $content, $matches);
 
 		// Create an array containing the image's source code, its path and all its classes
