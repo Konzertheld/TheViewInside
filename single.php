@@ -1,5 +1,5 @@
 <?php if ( ! defined('HABARI_PATH' ) ) { die( _t('Please do not load this page directly.') ); } ?>
-<?php include 'header.php'; ?>
+<?php $theme->display('header'); ?>
 <div id="contentcontainer">
 	<div id="content">
 		<div class="single post <?php echo Post::type_name($post->content_type[0]); ?><?php if($theme->evenodd) echo ' even'; else echo ' odd';?>">
@@ -31,4 +31,4 @@
 		<?php include("comments.php"); ?>
 	</div>
 </div>
-<?php include 'footer.php'; ?>
+<?php $theme->display('footer'); ?>
