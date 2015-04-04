@@ -187,8 +187,10 @@ class TheViewInside extends Theme
 		return $newcontent;
 	}
 	
-	// Get images
-	// Use content_out when calling to only get the images from the excerpt
+	/**
+	 * Get images
+	 * Use content_out when calling to only get the images from the excerpt
+	 */
 	public function post_get_images($content)
 	{
 		//@TODO: Cache this. Also, it's called in too many places and images are stored as postinfo. wtf?
