@@ -372,7 +372,7 @@ class TheViewInside extends Theme
 			$out = array();
 		}
 		
-		// Next, grab media from the linked silo directory (if any)
+		// Next, grab media from the linked silo directory (if any) and add them to the list
 		$photosource = $post->info->tvi_photosource;
 		if(isset($photosource) && !empty($photosource)) {
 			$assets = Media::dir($photosource);
