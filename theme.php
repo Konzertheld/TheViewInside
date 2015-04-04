@@ -385,10 +385,12 @@ class TheViewInside extends Theme
 			
 		// Apply limit and random order
 		// TODO: Decide when to randomize here
-		if(isset($post->info->max_images) && !empty($post->info->max_images))
+		if(isset($post->info->max_images) && !empty($post->info->max_images)) {
 			$limit = $post->info->max_images;
-		else
+		}
+		else {
 			$limit = 2; //TODO: Calculate a limit
+		}
 		shuffle($out);
 		return array_slice($out, 0, $limit);
 	}
