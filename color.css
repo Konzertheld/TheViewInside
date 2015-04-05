@@ -14,16 +14,13 @@ blockquote {
 	background-color: #f4f4f4;
 }
 
-#content {
-	background: rgba(244,244,244,0.75);
-}
-
 #contentcontainer, #headercontainer, #footercontainer {
 	color: #000;
 }
 
-#headerbarcontainer, #footerbarcontainer {
-	background: rgba(244,244,244,0.75); /* same color as #f4f4f4 with 30% opacity */
+/* don't remove #headercontainer here, it's necessary for the mobile view */
+#headercontainer, #headerbarcontainer, #footerbarcontainer, #content {
+	background: rgba(244,244,244,0.75); /* same color as #f4f4f4, rgba notation is necessary for opacity */
 }
 
 /* HEADER */
