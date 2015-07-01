@@ -393,7 +393,7 @@ class TheViewInside extends Theme
 	public function create_thumbnail($asset)
 	{
 		$src_filename = $asset->url;
-		$max_width = 220;
+		$max_width = 400;
 		
 		// Does derivative directory not exist?
 		$urldir = dirname( $src_filename ) . '/.tvi_thumbs';

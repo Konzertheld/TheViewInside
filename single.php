@@ -1,4 +1,5 @@
 <?php if ( ! defined('HABARI_PATH' ) ) { die( _t('Please do not load this page directly.') ); } ?>
+<?php if($post->tvi_hasphotos) $tvi_photos_out = $post->tvi_photos_out; ?>
 <?php $theme->display('header'); ?>
 <div id="contentcontainer">
 	<div id="content">
@@ -15,14 +16,14 @@
 				</div>
 				<?php endif; ?>
 			</div>
-			<div class="postcontent-container">
+			<div <?php if($post->tvi_hasphotos && isset($post->info->max_images)): ?>style="min-height: <?php echo $theme->sidephoto_height; ?>px"<?php endif; ?> class="postcontent-container">
 				<div class="postcontent<?php if($post->tvi_hasphotos) echo " withsidecontent"; ?>">
 					<?php echo $post->content_out;?>
 				</div>
 				<?php if($post->tvi_hasphotos): ?>
 				<div class='postside'>
 					<div class='postside-photos'>
-						<?php echo $post->tvi_photos_out; ?>
+						<?php echo $tvi_photos_out; ?>
 					</div>
 				</div>
 				<?php endif; ?>
